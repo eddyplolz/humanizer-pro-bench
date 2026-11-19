@@ -373,12 +373,20 @@ def score_command(args: argparse.Namespace) -> int:
 # ------------------------------------------------------------------ report
 
 
+QUOTE_STYLE = str.maketrans({"\u201c": '"', "\u201d": '"', "\u2018": "'", "\u2019": "'"})
+
+
 def guardrails(original: str, final: str) -> dict:
     compare = audit.compare_texts(original, final, "original.md", "final.md")
+    # The checker counts curly-to-straight quote swaps as changed quotes.
+    # This second pass ignores quote style, so a reader can tell real drift
+    # from punctuation.
+    plain = audit.compare_texts(original.translate(QUOTE_STYLE), final.translate(QUOTE_STYLE), "original.md", "final.md")
     result = audit.audit_text(final, "final.md")
     stats_hidden = sum(1 for f in result["findings"] if str(f["id"]).startswith("artifact.bypass"))
     return {
         "fact_drift": any(f["severity"] == "error" for f in compare["findings"]),
+        "fact_drift_plain": any(f["severity"] == "error" for f in plain["findings"]),
         "meaning_warning": any(str(f["id"]).startswith("compare.meaning") for f in compare["findings"]),
         "hidden": stats_hidden > 0,
         "length_ratio": corpus.word_count(final) / max(1, corpus.word_count(original)),
@@ -429,7 +437,7 @@ def report_command(args: argparse.Namespace) -> int:
                         (s1, guardrails(originals[row["id"]], row["drafts"][0]))
                     )
     header = ["Arm and model", "Group", "n"] + [f"{d} detected" for d in detectors] + [f"{d} AUROC" for d in detectors]
-    header += ["fact drift", "meaning warn", "hidden chars", "median length"]
+    header += ["fact drift", "fact drift, quote style ignored", "meaning warn", "hidden chars", "median length"]
     print("| " + " | ".join(header) + " |")
     print("|" + "---|" * len(header))
     for (label, group), rows in sorted(table.items(), key=lambda kv: (kv[0][1], kv[0][0])):
@@ -442,11 +450,12 @@ def report_command(args: argparse.Namespace) -> int:
         guards = [g for _s, g in rows if g]
         if guards:
             cells.append(pct(sum(g["fact_drift"] for g in guards), len(guards)))
+            cells.append(pct(sum(g["fact_drift_plain"] for g in guards), len(guards)))
             cells.append(pct(sum(g["meaning_warning"] for g in guards), len(guards)))
             cells.append(str(sum(g["hidden"] for g in guards)))
             cells.append(f"{statistics.median(g['length_ratio'] for g in guards):.2f}")
         else:
-            cells += ["-", "-", "-", "1.00"]
+            cells += ["-", "-", "-", "-", "1.00"]
         print("| " + " | ".join(cells) + " |")
     return 0
 
