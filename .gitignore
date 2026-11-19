@@ -1,0 +1,4 @@
+upstream
+rival
+__pycache__/
+*.pyc

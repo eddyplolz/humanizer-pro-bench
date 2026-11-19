@@ -1,0 +1,80 @@
+name: Rewrite
+# Has a model rewrite the fixed sample with one arm. Manual only. The dry run
+# (on by default) prints the cost and sends nothing. A real run stops itself
+# before any document that could take it past max_spend.
+on:
+  workflow_dispatch:
+    inputs:
+      arm:
+        description: skill = our SKILL.md; control = plain prompt; rival = blader/humanizer
+        type: choice
+        options: [skill, control, rival]
+        default: skill
+      models:
+        description: OpenRouter model ids, space-separated
+        default: anthropic/claude-sonnet-5.5 openai/gpt-5.4
+      split:
+        description: test for the scoreboard, dev for trying changes
+        type: choice
+        options: [test, dev]
+        default: test
+      max_spend:
+        description: Cap for this run in US dollars
+        default: "25"
+      dry_run:
+        description: Only print the plan and the cost
+        type: boolean
+        default: true
+      tag:
+        description: Optional label for a repeat run (lowercase letters and digits)
+        default: ""
+      rival_ref:
+        description: Commit or branch of blader/humanizer (rival arm only)
+        default: main
+permissions:
+  contents: write
+concurrency:
+  group: bench-data
+  cancel-in-progress: false
+jobs:
+  rewrite:
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+      - run: python bench/pool.py restore
+      - name: Check out the rival skill
+        if: inputs.arm == 'rival'
+        uses: actions/checkout@v4
+        with:
+          repository: blader/humanizer
+          ref: ${{ inputs.rival_ref }}
+          path: rival
+          persist-credentials: false
+      - name: Rewrite
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          ARM: ${{ inputs.arm }}
+          MODELS: ${{ inputs.models }}
+          SPLIT: ${{ inputs.split }}
+          MAX_SPEND: ${{ inputs.max_spend }}
+          DRY_RUN: ${{ inputs.dry_run }}
+          TAG: ${{ inputs.tag }}
+        run: |
+          args=(--arm "$ARM" --split "$SPLIT" --max-spend "$MAX_SPEND" --models $MODELS)
+          if [ -n "$TAG" ]; then args+=(--tag "$TAG"); fi
+          if [ "$ARM" = "rival" ]; then
+            echo "rival commit: $(git -C rival rev-parse HEAD)"
+            args+=(--rival-skill rival/SKILL.md)
+          fi
+          if [ "$DRY_RUN" = "true" ]; then args+=(--dry-run); fi
+          python bench/rewrite_bench.py "${args[@]}"
+      - name: Commit the rewrites
+        if: ${{ !inputs.dry_run }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/rewrites
+          git commit -m "Add rewrites: ${{ inputs.arm }} on ${{ inputs.split }}" || echo "nothing to commit"
+          git push

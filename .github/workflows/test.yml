@@ -1,0 +1,17 @@
+name: Test
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+        with:
+          require-cache: "false"
+      - run: pip install pytest==9.1.1
+      - run: python -m pytest tests -q

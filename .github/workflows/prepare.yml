@@ -1,0 +1,81 @@
+name: Prepare inputs
+# Builds the public human and RAID text once and keeps it in this repo's
+# Actions cache. With "generate" on, it also has the models answer the public
+# prompts in corpus/machine_prompts.json and commits that pool to data/generated/.
+on:
+  workflow_dispatch:
+    inputs:
+      generate:
+        description: Generate the fresh AI pool (costs money; needs the OPENROUTER_API_KEY secret)
+        type: boolean
+        default: false
+      dry_run:
+        description: Only print the generation cost
+        type: boolean
+        default: true
+      models:
+        description: OpenRouter model ids, space-separated
+        default: anthropic/claude-sonnet-5.5 openai/gpt-5.4
+      max_spend:
+        description: Stop if the cost ceiling is above this many US dollars
+        default: "25"
+permissions:
+  contents: write
+concurrency:
+  group: bench-data
+  cancel-in-progress: false
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    steps:
+      - uses: actions/checkout@v4
+      - id: setup
+        uses: ./.github/actions/setup
+        with:
+          require-cache: "false"
+      - name: Build public text (human pools and RAID)
+        if: steps.setup.outputs.cache-hit != 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd upstream
+          # PERSUADE is a private dataset and is never built here.
+          python scripts/corpus.py fetch || true
+          python scripts/corpus.py build-essays
+          python scripts/corpus.py build-peps
+          python scripts/corpus.py build-raid
+          python scripts/corpus.py verify || true
+      - name: Save the corpus cache
+        if: steps.setup.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            upstream/corpus/cache
+            upstream/corpus/manifest.json
+          key: corpus-${{ steps.setup.outputs.sha }}-v1
+      - name: Generate the fresh AI pool
+        if: inputs.generate
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          MODELS: ${{ inputs.models }}
+          MAX_SPEND: ${{ inputs.max_spend }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          cd upstream
+          out=$(python scripts/generate_machine.py --provider openrouter --models $MODELS --dry-run)
+          echo "$out"
+          ceiling=$(echo "$out" | sed -n 's/.*ceiling: \$\([0-9.]*\).*/\1/p')
+          python -c "import sys; c, cap = float(sys.argv[1]), float(sys.argv[2]); sys.exit(f'STOP: ceiling \${c:.2f} is above the \${cap:.2f} cap' if c > cap else 0)" "$ceiling" "$MAX_SPEND"
+          if [ "$DRY_RUN" = "true" ]; then echo "Dry run: nothing was sent."; exit 0; fi
+          python scripts/generate_machine.py --provider openrouter --models $MODELS
+          cd ..
+          python bench/pool.py save
+      - name: Commit the fresh pool
+        if: inputs.generate && !inputs.dry_run
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/generated
+          git commit -m "Add the generated pool" || echo "nothing to commit"
+          git push

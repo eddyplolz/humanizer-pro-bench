@@ -1,0 +1,96 @@
+name: Detect
+# Scores the human test documents, the sampled AI originals, and every saved
+# rewrite with one detector per job (each job is its own runner with about
+# 7 GB of memory), then commits the scores and writes the report.
+on:
+  workflow_dispatch:
+    inputs:
+      detectors:
+        description: Which detectors to run
+        type: choice
+        options: [all, desklib, fastdetectgpt, binoculars]
+        default: all
+      split:
+        type: choice
+        options: [test, dev]
+        default: test
+permissions:
+  contents: write
+concurrency:
+  group: bench-data
+  cancel-in-progress: false
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.m.outputs.matrix }}
+    steps:
+      - id: m
+        env:
+          PICK: ${{ inputs.detectors }}
+        run: |
+          if [ "$PICK" = "all" ]; then
+            echo 'matrix=["desklib","fastdetectgpt","binoculars"]' >> "$GITHUB_OUTPUT"
+          else
+            echo "matrix=[\"$PICK\"]" >> "$GITHUB_OUTPUT"
+          fi
+  score:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      matrix:
+        detector: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+      - run: python bench/pool.py restore
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-${{ matrix.detector }}-v1
+      - run: pip install -r requirements-detect.txt
+      - name: Score
+        run: python bench/detect_bench.py score --detector ${{ matrix.detector }} --split ${{ inputs.split }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: scores-${{ matrix.detector }}
+          path: data/scores/
+          if-no-files-found: ignore
+  report:
+    needs: score
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+      - run: python bench/pool.py restore
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: scores-*
+          path: incoming
+      - name: Merge new scores
+        run: |
+          mkdir -p data/scores
+          for f in incoming/*/*.jsonl; do
+            [ -e "$f" ] || continue
+            name=$(basename "$f")
+            cat "$f" data/scores/"$name" 2>/dev/null | sort -u > merged.tmp || true
+            mv merged.tmp data/scores/"$name"
+          done
+      - name: Report
+        run: |
+          mkdir -p data/reports
+          out="data/reports/report-${{ inputs.split }}-$(date -u +%Y%m%dT%H%MZ).md"
+          python bench/detect_bench.py report --split ${{ inputs.split }} | tee "$out"
+          cat "$out" >> "$GITHUB_STEP_SUMMARY"
+      - name: Commit scores and report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/scores data/reports
+          git commit -m "Add detector scores and report" || echo "nothing to commit"
+          git push
