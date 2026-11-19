@@ -323,8 +323,10 @@ def rewrite_rows() -> list[dict]:
     return rows
 
 
-def all_texts(split: str) -> list[str]:
+def all_texts(split: str, humans_only: bool = False) -> list[str]:
     texts = [text for _id, text in human_test_texts()]
+    if humans_only:
+        return texts
     texts += [bench.read_text(item["id"]) for item in bench.bench_sample(corpus.load_manifest()["entries"], split)]
     for row in rewrite_rows():
         texts += [draft for draft in row["drafts"]]
@@ -350,7 +352,7 @@ def score_command(args: argparse.Namespace) -> int:
         detectors = [FastDetectGPT(device, args.bf16)]
     else:
         detectors = [Binoculars(args.pair, device, args.bf16)]
-    texts = list(dict.fromkeys(all_texts(args.split)))
+    texts = list(dict.fromkeys(all_texts(args.split, args.humans_only)))
     SCORES_DIR.mkdir(parents=True, exist_ok=True)
     for detector in detectors:
         cached = load_scores(detector.name)
@@ -460,6 +462,7 @@ def main(argv: list[str] | None = None) -> int:
     score.add_argument("--min-free-gb", type=float, help="Override the free-memory check (GB).")
     score.add_argument("--bf16", action="store_true", help="Half the memory for the language models; slower on some CPUs.")
     score.add_argument("--split", choices=["test", "dev"], default="test")
+    score.add_argument("--humans-only", action="store_true", help="Score only the human test set (no AI pool needed).")
     report = sub.add_parser("report", help="Print the benchmark tables.")
     report.add_argument("--pair", choices=sorted(PAIRS), default="tiny")
     report.add_argument("--fpr", type=float, default=DEFAULT_FPR)
