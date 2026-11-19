@@ -1,0 +1,31 @@
+# Axolotl
+
+The **axolotl** (*Ambystoma mexicanum*) is a paedomorphic salamander native to the lake complex of Xochimilco near Mexico City. Unlike most amphibians, it reaches adulthood without undergoing metamorphosis, retaining its aquatic larval features, including external gills and a dorsal tailfin, throughout its life. The species is widely studied in scientific research and is also kept as a pet, but it is critically endangered in the wild.
+
+## Etymology
+
+The name derives from the Nahuatl word *āxōlōtl*, often translated as "water dog" or "water monster." It is associated with Xolotl, the Aztec god of fire and lightning, who according to legend transformed himself into an axolotl to escape sacrifice.
+
+## Description
+
+Adults typically measure 15–45 cm in length, though most are around 23 cm. The head is broad, with a wide mouth, small lidless eyes, and three pairs of feathery external gills that extend from behind the head. Wild-type axolotls are dark brown or olive with gold speckling, but captive populations show several color variants, including leucistic (pale pink with black eyes), albino, golden, and melanoid forms. Axolotls have four limbs, with four toes on the front feet and five on the hind feet, and they possess both gills and rudimentary lungs.
+
+## Habitat and ecology
+
+Axolotls are native only to Lake Xochimilco and, historically, Lake Chalco. They prefer cold, clean, deep water, generally between 14 and 20 °C. They are carnivorous, feeding on worms, insect larvae, small fish, mollusks, and crustaceans, which they locate by smell and capture by suction. Sexual maturity is reached at roughly 18 to 24 months. Females lay hundreds of eggs, which are attached individually to aquatic plants.
+
+## Regeneration
+
+The axolotl is renowned for its extraordinary regenerative ability. It can regrow entire limbs, parts of the heart and brain, the spinal cord, and the tail, usually without scarring. This has made it an important model organism in developmental biology, regenerative medicine, and cancer research. Its genome, sequenced in 2018, is about ten times larger than the human genome, among the largest sequenced to date.
+
+## Metamorphosis
+
+Neoteny in axolotls results from low levels of thyroid hormone. Metamorphosis can be artificially induced by injecting thyroxine or iodine, producing a lung-breathing, terrestrial form resembling the tiger salamander, though this often shortens the animal's lifespan.
+
+## Conservation status
+
+The axolotl is listed as **critically endangered** by the IUCN. Wild populations have declined sharply because of urban expansion, water pollution, draining of lakes, and the introduction of invasive fish such as tilapia and carp. Surveys in the early 21st century suggested only a few hundred individuals remained in the wild. Conservation efforts include habitat restoration, the creation of traditional *chinampa* refuges, and captive breeding programs.
+
+## Cultural significance
+
+The axolotl appears in Mexican art and folklore and is featured on the 50-peso banknote. It has also gained widespread popularity in video games and popular culture.

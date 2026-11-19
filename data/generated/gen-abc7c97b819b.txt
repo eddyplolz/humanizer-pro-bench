@@ -1,0 +1,72 @@
+# Contributing to the Docs
+
+Thank you for helping improve our documentation! Whether you're fixing a typo or writing a new tutorial, every contribution makes the project easier to use. This guide explains how to get started.
+
+## Ways to Contribute
+
+- **Fix errors:** typos, broken links, outdated screenshots, or incorrect code samples.
+- **Improve clarity:** rewrite confusing explanations or add missing context.
+- **Write new content:** tutorials, how-to guides, and reference pages.
+- **Review pull requests:** feedback from fresh eyes is invaluable.
+- **Report issues:** if you spot a problem but can't fix it, open an issue.
+
+## Getting Set Up
+
+1. **Fork** the repository and clone your fork locally.
+2. Install dependencies with `npm install`.
+3. Start the local preview server with `npm run dev`.
+4. Open `http://localhost:3000` to see your changes update live.
+
+For small edits, you can also click **Edit this page** at the bottom of any page to make changes directly on GitHub.
+
+## Making a Change
+
+1. Create a branch with a descriptive name, such as `fix-install-typo` or `add-auth-guide`.
+2. Make your edits in the `docs/` directory. Files are written in Markdown.
+3. Run `npm run lint` to check formatting and `npm run build` to confirm the site builds without broken links.
+4. Commit using a clear message, such as `Fix incorrect flag in CLI reference`.
+5. Push your branch and open a pull request.
+
+## Style Guidelines
+
+Consistent writing helps readers. Please follow these conventions:
+
+- **Use plain language.** Prefer short sentences and avoid unnecessary jargon.
+- **Address the reader as "you."**
+- **Use active voice.** Write "Run the command," not "The command should be run."
+- **Put code in code blocks** and specify the language for syntax highlighting.
+- **Use sentence case** for headings.
+- **Make examples runnable.** Test every snippet before submitting it.
+- **Write descriptive link text.** Avoid "click here."
+
+## Structure of the Docs
+
+We organize content into four types:
+
+- **Tutorials:** step-by-step lessons for beginners.
+- **How-to guides:** solutions to specific problems.
+- **Reference:** precise technical descriptions.
+- **Explanations:** background and concepts.
+
+Try to keep each page focused on one type.
+
+## Pull Request Checklist
+
+Before submitting, confirm that:
+
+- [ ] The site builds locally without errors.
+- [ ] Links and code samples work.
+- [ ] Your changes follow the style guidelines.
+- [ ] The PR description explains what changed and why.
+
+## Review Process
+
+A maintainer will typically respond within a few days. We may suggest edits, so please don't be discouraged by feedback. It's a normal part of collaboration. Once approved, your changes will be merged and published automatically.
+
+## Community Expectations
+
+Be kind, patient, and respectful. All contributors must follow our Code of Conduct.
+
+## Need Help?
+
+Ask questions in our discussion forum or comment on an issue. We're happy to help first-time contributors get started.

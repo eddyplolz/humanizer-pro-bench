@@ -1,0 +1,15 @@
+**Voyager 1**
+
+**Voyager 1** is a robotic space probe operated by NASA and launched on 5 September 1977 as part of the Voyager program. Designed primarily to study the outer Solar System, it became one of the most significant scientific spacecraft in history. After completing its original mission, Voyager 1 continued outward and is now the most distant human-made object from Earth.
+
+Voyager 1 was built by the Jet Propulsion Laboratory (JPL) and launched aboard a Titan IIIE rocket from Cape Canaveral, Florida. Although launched after its twin, **Voyager 2**, it followed a faster trajectory that allowed it to reach Jupiter and Saturn earlier. Its mission took advantage of a rare planetary alignment that enabled spacecraft to visit multiple outer planets using gravitational assists.
+
+The probe conducted its first major encounter with **Jupiter** in 1979. During the flyby, it returned detailed images of the planet’s atmosphere, including its turbulent cloud bands and the Great Red Spot. Voyager 1 also made important discoveries about Jupiter’s moons, notably finding evidence of active volcanism on **Io**, the first such activity observed beyond Earth. It also provided new information on Europa, Ganymede, and Callisto, as well as Jupiter’s magnetosphere and ring system.
+
+In 1980, Voyager 1 flew past **Saturn** and its moon **Titan**. The Titan encounter was a major priority because of the moon’s dense atmosphere. The spacecraft confirmed that Titan’s atmosphere is rich in nitrogen, though its opaque haze prevented detailed imaging of the surface. Voyager 1 also returned extensive observations of Saturn’s rings, moons, and magnetic environment. Because of the trajectory required for the Titan flyby, the spacecraft was redirected out of the plane of the Solar System, ending any possibility of further planetary encounters.
+
+After its planetary mission, Voyager 1 entered an extended mission focused on studying the outer heliosphere, the region influenced by the solar wind. In August 2012, NASA announced that Voyager 1 had become the first spacecraft to enter **interstellar space**, crossing the heliopause, the boundary where the Sun’s influence gives way to the interstellar medium. Its instruments have since continued to measure charged particles, magnetic fields, and plasma conditions in this poorly understood region.
+
+Voyager 1 carries a **Golden Record**, a phonograph record containing sounds, images, and messages intended to portray the diversity of life and culture on Earth. Conceived as a symbolic message to any future finders, it has become one of the mission’s most enduring cultural features.
+
+As of the 21st century, Voyager 1 remains in contact with Earth through NASA’s Deep Space Network, though its power supply gradually declines as its radioisotope thermoelectric generators lose output. Its mission has been extended repeatedly, and it continues to provide valuable scientific data while traveling deeper into interstellar space.

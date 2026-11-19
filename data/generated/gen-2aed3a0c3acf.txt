@@ -1,0 +1,95 @@
+## Plugin System
+
+The editor includes a flexible plugin system that allows you to extend core functionality without modifying the main application. Plugins can add commands, sidebar panels, language support, formatters, themes, and event-driven behavior.
+
+### Plugin Structure
+
+Each plugin lives in its own directory and must include a manifest file named `plugin.json`. A typical plugin looks like this:
+
+```text
+my-plugin/
+  plugin.json
+  main.js
+  README.md
+  assets/
+```
+
+The `plugin.json` file defines metadata and the plugin entry point:
+
+```json
+{
+  "id": "example.hello-world",
+  "name": "Hello World",
+  "version": "1.0.0",
+  "main": "main.js",
+  "enabled": true
+}
+```
+
+Required fields:
+
+- `id`: Unique plugin identifier.
+- `name`: Human-readable name.
+- `version`: Plugin version.
+- `main`: Entry script loaded by the editor.
+
+Optional fields may include `description`, `author`, and `dependencies`.
+
+### Lifecycle
+
+When the editor starts, it scans the plugin directory, reads each manifest, and loads enabled plugins. The entry script must export an `activate` function. If present, a `deactivate` function is called when the plugin is unloaded or the editor exits.
+
+Example:
+
+```js
+export function activate(api) {
+  api.commands.register("hello.sayHello", () => {
+    api.window.showMessage("Hello from plugin!");
+  });
+}
+
+export function deactivate() {
+  // Clean up resources here
+}
+```
+
+Use `activate` to register commands, subscribe to events, or initialize UI elements. Use `deactivate` to dispose of timers, listeners, and temporary state.
+
+### Editor API
+
+Plugins interact with the editor through the `api` object passed to `activate`. Common namespaces include:
+
+- `api.commands`: Register and execute commands.
+- `api.window`: Show notifications, dialogs, and UI panels.
+- `api.workspace`: Access open files, project folders, and settings.
+- `api.editor`: Read or modify the active document.
+- `api.events`: Subscribe to editor events such as file open, save, or cursor movement.
+
+Example command registration:
+
+```js
+export function activate(api) {
+  api.commands.register("example.insertDate", () => {
+    const editor = api.editor.getActiveEditor();
+    if (!editor) return;
+
+    editor.insertText(new Date().toLocaleDateString());
+  });
+}
+```
+
+### Installation and Management
+
+Plugins can be installed by copying their directory into the editor’s `plugins/` folder or through the built-in plugin manager. Users can enable, disable, update, or remove plugins from the settings interface.
+
+If a plugin fails to load, the editor logs the error and continues starting up. Load errors, activation failures, and dependency issues are reported in the developer console.
+
+### Best Practices
+
+- Keep plugins focused on a single responsibility.
+- Use stable, namespaced command IDs such as `author.feature.action`.
+- Validate settings and handle missing editor state gracefully.
+- Dispose of event listeners during deactivation.
+- Avoid blocking operations during activation to keep startup fast.
+
+A well-designed plugin should feel native to the editor, remain lightweight, and fail safely when the required context is unavailable.

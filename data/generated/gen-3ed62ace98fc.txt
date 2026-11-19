@@ -1,0 +1,77 @@
+# Commit Message Style Guide
+
+Good commit messages help teammates review changes, help future maintainers understand decisions, and make debugging with `git log` and `git blame` far more productive. Follow these conventions for every commit.
+
+## Structure
+
+```
+<subject line>
+
+<body>
+
+<footer>
+```
+
+Separate the subject from the body with a blank line. The body and footer are optional for trivial changes.
+
+## Subject Line
+
+- **Limit to 50 characters.** Hard limit is 72.
+- **Use the imperative mood**: "Add retry logic," not "Added retry logic" or "Adds retry logic." A good test: the subject should complete the sentence, "If applied, this commit will…"
+- **Capitalize the first word.**
+- **Omit the trailing period.**
+- **Be specific.** "Fix bug" and "Update code" say nothing. "Fix null check in user lookup" does.
+
+If your team uses prefixes such as `feat:`, `fix:`, `docs:`, or `refactor:` (Conventional Commits), apply them consistently and keep the total length within the limit.
+
+## Body
+
+Use the body to explain **what changed and why**, not how. The diff already shows how. Consider addressing:
+
+- What problem prompted this change?
+- Why did you choose this approach over alternatives?
+- What side effects or limitations should reviewers know about?
+
+Wrap lines at 72 characters. Use bullet points for lists of discrete changes, with hyphens or asterisks.
+
+## Footer
+
+Use the footer for metadata:
+
+- Issue references: `Fixes #123`, `Refs #456`
+- Breaking changes: `BREAKING CHANGE: description`
+- Co-authors: `Co-authored-by: Name <email>`
+
+## Scope of a Commit
+
+Make each commit a single logical change. If you need "and" in your subject line, consider splitting the commit. Avoid mixing formatting changes with functional changes, since this makes review and reverting harder.
+
+## Examples
+
+**Weak:**
+```
+fixed stuff
+```
+
+**Strong:**
+```
+Fix race condition in session cleanup
+
+The cleanup job could delete sessions that were being
+refreshed concurrently, logging users out unexpectedly.
+Acquire a row-level lock before checking expiration.
+
+Fixes #482
+```
+
+## Things to Avoid
+
+- Vague messages: "WIP," "misc fixes," "updates"
+- Describing the file instead of the change
+- Referencing context only you have ("as discussed")
+- Blaming or editorializing ("fix stupid bug")
+- Committing generated noise without explanation
+
+## Final Check
+
+Before committing, ask: *Would someone reading this in two years understand why this change was made?* If not, add more context.

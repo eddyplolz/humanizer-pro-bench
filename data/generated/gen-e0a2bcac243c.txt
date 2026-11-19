@@ -1,0 +1,91 @@
+# Create Event
+
+Creates a new event on a specified calendar.
+
+**Endpoint**
+```
+POST /v1/calendars/{calendar_id}/events
+```
+
+**Authentication:** Bearer token with the `calendar.events.write` scope.
+
+---
+
+## Path Parameters
+
+| Parameter | Type | Description |
+|---|---|---|
+| `calendar_id` | string | ID of the calendar. Use `primary` for the user's default calendar. |
+
+## Request Body
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `title` | string | Yes | Event title (max 200 characters). |
+| `start` | string | Yes | Start time in ISO 8601 format, e.g. `2025-07-01T14:00:00Z`. |
+| `end` | string | Yes | End time. Must be after `start`. |
+| `timezone` | string | No | IANA time zone, e.g. `America/New_York`. Defaults to the calendar's time zone. |
+| `description` | string | No | Event details (max 5,000 characters). |
+| `location` | string | No | Physical address or meeting URL. |
+| `attendees` | array | No | List of objects with an `email` field and optional `optional` boolean. |
+| `reminders` | array | No | List of objects with `method` (`email` or `popup`) and `minutes_before`. |
+| `recurrence` | string | No | RRULE string, e.g. `FREQ=WEEKLY;COUNT=10`. |
+| `send_notifications` | boolean | No | Whether to email invitations. Default: `true`. |
+
+## Example Request
+
+```bash
+curl -X POST https://api.example.com/v1/calendars/primary/events \
+  -H "Authorization: Bearer YOUR_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "Project Kickoff",
+    "start": "2025-07-01T14:00:00Z",
+    "end": "2025-07-01T15:00:00Z",
+    "location": "https://meet.example.com/kickoff",
+    "attendees": [
+      { "email": "jordan@example.com" },
+      { "email": "sam@example.com", "optional": true }
+    ],
+    "reminders": [{ "method": "popup", "minutes_before": 10 }]
+  }'
+```
+
+## Success Response
+
+**Status:** `201 Created`
+
+```json
+{
+  "id": "evt_8f3k29x",
+  "calendar_id": "primary",
+  "title": "Project Kickoff",
+  "start": "2025-07-01T14:00:00Z",
+  "end": "2025-07-01T15:00:00Z",
+  "status": "confirmed",
+  "attendees": [
+    { "email": "jordan@example.com", "response": "pending" },
+    { "email": "sam@example.com", "optional": true, "response": "pending" }
+  ],
+  "created_at": "2025-06-20T09:12:44Z",
+  "url": "https://calendar.example.com/events/evt_8f3k29x"
+}
+```
+
+## Errors
+
+| Status | Code | Meaning |
+|---|---|---|
+| 400 | `invalid_request` | Missing required field, malformed date, or `end` is before `start`. |
+| 401 | `unauthorized` | Token is missing, invalid, or expired. |
+| 403 | `insufficient_scope` | Token lacks write permission for this calendar. |
+| 404 | `calendar_not_found` | The specified calendar does not exist. |
+| 409 | `conflict` | An identical event already exists (when using an idempotency key). |
+| 429 | `rate_limited` | Too many requests. Retry after the time in the `Retry-After` header. |
+
+## Notes
+
+- **Idempotency:** Include an `Idempotency-Key` header to safely retry requests without creating duplicates.
+- **Rate limit:** 60 requests per minute per user.
+- **Attendee limit:** Up to 200 attendees per event.
+- **All-day events:** Pass dates only (e.g. `2025-07-01`) for `start` and `end`. The `end` date is exclusive.

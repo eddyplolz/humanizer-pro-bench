@@ -1,0 +1,41 @@
+# Backend Team Onboarding Guide
+
+Welcome to the team! This guide will help you get productive quickly and feel confident in your first few weeks.
+
+## Week One: Get Set Up
+
+**Access and tools.** Your manager will request access to the code repositories, CI/CD pipelines, cloud console, monitoring dashboards, and communication channels. If anything is missing by day two, ask in the team channel rather than waiting.
+
+**Local environment.** Clone the main service repository and follow the README to run the application locally. Your goal for week one is to get the test suite passing on your machine. If the setup docs are wrong or outdated, fix them in a pull request. This is a great first contribution.
+
+**Meet your people.** You'll be paired with an onboarding buddy who answers questions, reviews your early work, and helps you learn the team's unwritten conventions. Schedule one-on-ones with your manager, tech lead, and product partner.
+
+## Weeks Two and Three: Learn the System
+
+**Architecture.** Read the architecture overview and service diagrams. Focus on understanding how requests flow through the system, where data lives, and which services depend on each other. Draw your own diagram and ask your buddy to correct it.
+
+**Codebase tour.** Explore the code with a specific task in mind. Trace a single API request from the entry point to the database and back. This teaches more than reading code at random.
+
+**First ticket.** Pick up a small, well-scoped issue tagged "good first issue." Aim to ship it to production by the end of week three. The point is learning the full path: branch, review, merge, deploy, and verify.
+
+## Weeks Four to Six: Build Confidence
+
+**Observability.** Learn to read logs, metrics, and traces. Know where to look when something breaks. Shadow an on-call engineer for at least one rotation before taking your own.
+
+**Code reviews.** Start reviewing teammates' pull requests. Fresh eyes catch things veterans miss, and reviewing is one of the fastest ways to learn the codebase.
+
+**Larger work.** Take on a medium-sized feature or bug with your buddy's guidance. Write a short design note before starting so the team can offer feedback early.
+
+## Working Norms
+
+- **Ask early.** Spending more than 30 minutes stuck is usually a signal to ask for help.
+- **Write things down.** Document decisions and discoveries so the next person benefits.
+- **Keep changes small.** Small pull requests are easier to review and safer to deploy.
+- **Test your work.** Include unit and integration tests with every change.
+- **Own your mistakes.** We run blameless postmortems, so incidents become learning opportunities.
+
+## Success at 90 Days
+
+By three months, you should be able to ship features independently, participate in on-call, review code confidently, and suggest improvements to our processes.
+
+We're glad you're here. Ask questions, stay curious, and don't hesitate to challenge how we do things.

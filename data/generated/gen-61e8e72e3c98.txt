@@ -1,0 +1,27 @@
+# Library of Alexandria
+
+The **Library of Alexandria** was one of the largest and most prestigious libraries of the ancient world, located in Alexandria, Egypt. Founded in the early 3rd century BCE under the Ptolemaic dynasty, it formed part of a research institution known as the Mouseion (Museum), dedicated to the Muses. The library became a symbol of ancient learning and, in popular culture, of knowledge lost to destruction.
+
+## History
+
+The library was probably established during the reign of Ptolemy I Soter (r. 305–282 BCE) or his son Ptolemy II Philadelphus (r. 284–246 BCE). Demetrius of Phalerum, an Athenian exile, is traditionally credited with advising on its creation, though modern scholars debate his role. The Ptolemies sought to gather texts from across the known world. According to ancient sources, ships entering Alexandria's harbor were searched for books, which were copied and sometimes kept, with the owners receiving the copies instead.
+
+## Collection and scholarship
+
+Estimates of the library's holdings vary widely, with ancient writers citing figures from 40,000 to 700,000 scrolls. These numbers are generally considered unreliable. The collection included works of literature, history, mathematics, medicine, and philosophy, largely in Greek but also in translation from other languages. According to tradition, the Hebrew scriptures were translated into Greek there, producing the Septuagint.
+
+The library attracted prominent scholars. Euclid is associated with Alexandria and produced his *Elements* there. Eratosthenes, who served as librarian, calculated the Earth's circumference. Other figures include Aristarchus of Samothrace, who edited Homeric texts, and Callimachus, who compiled the *Pinakes*, an early catalog of the collection. Herophilus and Erasistratus advanced the study of anatomy in the city.
+
+## Decline and destruction
+
+The library's end was gradual rather than a single catastrophe. Julius Caesar's fire in 48 BCE, set during his conflict in Alexandria, damaged part of the city and may have destroyed some books, though its extent is uncertain. Under Roman rule, funding and royal patronage declined. Aurelian's campaign in the 270s CE devastated the district containing the Mouseion. The Serapeum, a "daughter library," was destroyed in 391 CE under Bishop Theophilus. The story that the Arab conqueror Amr ibn al-As burned the library in 642 CE is regarded by most historians as a later legend.
+
+## Modern legacy
+
+In 2002, Egypt opened the **Bibliotheca Alexandrina** near the ancient site, a modern library and cultural center intended to revive the spirit of the original institution.
+
+## See also
+
+- Ptolemaic Kingdom
+- Library of Pergamum
+- Septuagint

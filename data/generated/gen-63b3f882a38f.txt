@@ -1,0 +1,108 @@
+# Photo Date Renamer
+
+A simple command-line tool that renames photo files using the date they were taken, based on EXIF metadata. This makes photo libraries easier to sort, search, and archive across folders and devices.
+
+## Features
+
+- Renames photos using the original capture date from EXIF metadata
+- Supports common image formats such as JPG and JPEG
+- Keeps filenames consistent and sortable
+- Handles duplicate timestamps by appending a counter
+- Can process a single folder or work recursively through subfolders
+- Dry-run mode to preview changes before renaming files
+
+## Why use it?
+
+Cameras and phones often produce filenames like `IMG_4032.JPG` or `DSC00123.jpg`, which are not very useful once files are copied into larger collections. This tool replaces those generic names with timestamp-based names such as:
+
+```bash
+2023-08-14_18-42-09.jpg
+2023-08-14_18-42-09_2.jpg
+```
+
+That format is readable, sortable, and helps prevent confusion when merging photos from multiple devices.
+
+## Installation
+
+Clone the repository and install dependencies:
+
+```bash
+git clone https://github.com/yourname/photo-date-renamer.git
+cd photo-date-renamer
+pip install -r requirements.txt
+```
+
+If the package is published, you may also be able to install it with:
+
+```bash
+pip install photo-date-renamer
+```
+
+## Usage
+
+Rename all supported photos in a folder:
+
+```bash
+photo-date-renamer /path/to/photos
+```
+
+Process folders recursively:
+
+```bash
+photo-date-renamer /path/to/photos --recursive
+```
+
+Preview changes without modifying files:
+
+```bash
+photo-date-renamer /path/to/photos --dry-run
+```
+
+Specify a custom filename format:
+
+```bash
+photo-date-renamer /path/to/photos --format "%Y/%m/%Y-%m-%d_%H-%M-%S"
+```
+
+## Filename behavior
+
+By default, files are renamed using this pattern:
+
+```text
+YYYY-MM-DD_HH-MM-SS.ext
+```
+
+Examples:
+
+- `IMG_0001.JPG` → `2022-05-06_14-33-21.jpg`
+- `DSC7788.jpeg` → `2022-05-06_14-33-21_2.jpeg`
+
+If two or more photos share the same timestamp, the tool adds a numeric suffix to avoid overwriting files.
+
+## Missing metadata
+
+If a file does not contain a valid capture date in its EXIF metadata, the tool will skip it by default and report the issue in the summary output. Depending on configuration, future versions may optionally fall back to file creation or modification time.
+
+## Safety
+
+- Never overwrites an existing file without warning
+- Supports dry runs for safe previews
+- Reports renamed, skipped, and failed files at the end of execution
+
+## Example output
+
+```bash
+Renamed: IMG_1203.JPG -> 2021-11-03_09-15-44.jpg
+Renamed: IMG_1204.JPG -> 2021-11-03_09-15-45.jpg
+Skipped: scan_01.jpg (no EXIF date found)
+
+Done. 2 renamed, 1 skipped, 0 failed.
+```
+
+## Contributing
+
+Issues and pull requests are welcome. If you find a bug or want to suggest a feature, please open an issue with sample filenames, expected behavior, and your platform details.
+
+## License
+
+MIT License.

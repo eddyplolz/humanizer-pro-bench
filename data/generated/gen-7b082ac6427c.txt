@@ -1,0 +1,51 @@
+# Inkwell 2.0 Release Notes
+
+We're thrilled to introduce Inkwell 2.0, our biggest update yet. This release brings a redesigned interface, powerful new ways to organize your thinking, and a faster, more reliable foundation.
+
+## What's New
+
+**Redesigned Interface**
+Inkwell has a fresh look with a cleaner layout, refined typography, and a new distraction-free writing mode. Dark mode now follows your system settings automatically, and you can choose from six new accent colors.
+
+**Linked Notes and Graph View**
+Connect ideas by typing `[[` to link to any note. The new Graph View shows how your notes relate, making it easier to spot patterns and rediscover forgotten ideas. Backlinks now appear at the bottom of each note.
+
+**Real-Time Collaboration**
+Share a note or an entire notebook with teammates, friends, or family. See live cursors, leave inline comments, and review changes with version history. Permissions can be set to view, comment, or edit.
+
+**Smart Search**
+Search is now up to three times faster and understands natural language. Try queries like "meeting notes from last March" or "photos with handwritten text." Inkwell can also search text inside images and PDFs.
+
+**Templates and Quick Capture**
+Start faster with 25 built-in templates, including daily journal, project plan, and weekly review, or create your own. The new Quick Capture widget and shortcut (`Ctrl/Cmd + Shift + N`) lets you jot down a thought without opening the full app.
+
+## Improvements
+
+- Markdown support now includes tables, footnotes, and task lists with due dates.
+- Export notes to PDF, Markdown, or HTML with formatting preserved.
+- Sync is more reliable, with automatic conflict resolution when you edit offline on multiple devices.
+- Handwriting input on tablets has lower latency and improved palm rejection.
+- Importing from other note apps is now supported through a guided import tool.
+- App launch time is 40% faster on mobile devices.
+
+## Fixes
+
+- Fixed an issue where large notebooks could slow down scrolling.
+- Resolved a bug that caused images to appear rotated after syncing.
+- Corrected a rare crash when pasting formatted text from web pages.
+- Fixed tags disappearing when renaming a notebook.
+- Improved screen reader support throughout the app.
+
+## Security and Privacy
+
+All notes are now protected with end-to-end encryption by default. You can also lock individual notes with a passcode or biometric authentication.
+
+## A Note on Upgrading
+
+Your existing notes will migrate automatically the first time you open Inkwell 2.0. We recommend backing up your data beforehand through **Settings > Backup**. Please note that the legacy folder system has been replaced by notebooks and tags. Your folders will be converted for you.
+
+## Thank You
+
+Many of these features came directly from your feedback. Keep it coming at feedback@inkwell.app, and happy writing!
+
+*The Inkwell Team*

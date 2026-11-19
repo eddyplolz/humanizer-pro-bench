@@ -1,0 +1,104 @@
+# Migrating Configuration Files from v1 to v2
+
+This guide covers the changes between v1 and v2 of the configuration format and how to update your files. Examples use YAML.
+
+## Summary of Changes
+
+| Area | v1 | v2 |
+|---|---|---|
+| Version field | Optional | **Required** (`version: 2`) |
+| Server settings | Flat keys | Nested under `server` |
+| Timeouts | Integers (seconds) | Duration strings (`"30s"`) |
+| Environment variables | `$VAR` | `${VAR}` or `${VAR:-default}` |
+| Booleans | `yes`/`no` accepted | `true`/`false` only |
+| `log_file` | Supported | Removed; use `logging.output` |
+
+## Step 1: Add the Version Field
+
+Add this at the top of every file. v2 parsers reject files without it.
+
+```yaml
+version: 2
+```
+
+## Step 2: Nest Server Settings
+
+The flat `host`, `port`, and `timeout` keys now live under `server`.
+
+**v1**
+```yaml
+host: 0.0.0.0
+port: 8080
+timeout: 30
+```
+
+**v2**
+```yaml
+server:
+  host: 0.0.0.0
+  port: 8080
+  timeout: "30s"
+```
+
+## Step 3: Convert Timeouts to Durations
+
+All time values must be strings with a unit: `ms`, `s`, `m`, or `h`. Bare integers now raise a validation error because the old implicit unit (seconds) caused confusion.
+
+## Step 4: Update Environment Variable Syntax
+
+Change `$DB_PASSWORD` to `${DB_PASSWORD}`. You can now supply fallbacks:
+
+```yaml
+database:
+  password: ${DB_PASSWORD:-changeme}
+```
+
+Literal dollar signs must be escaped as `$$`.
+
+## Step 5: Replace Deprecated Options
+
+`log_file` is removed. Use the `logging` block instead:
+
+**v1**
+```yaml
+log_file: /var/log/app.log
+```
+
+**v2**
+```yaml
+logging:
+  output: /var/log/app.log
+  level: info
+```
+
+## Step 6: Fix Boolean Values
+
+Replace `yes`, `no`, `on`, and `off` with `true` or `false`. v2 follows YAML 1.2, which no longer treats the older forms as booleans.
+
+## Automated Migration
+
+A converter handles most of these changes:
+
+```bash
+config-tool migrate --from 1 --to 2 config.yaml -o config.v2.yaml
+```
+
+Review the output before deploying. The tool cannot infer the right `logging.level`, so it defaults to `info`.
+
+## Validating the Result
+
+```bash
+config-tool validate config.v2.yaml
+```
+
+Fix any reported errors, which include line numbers.
+
+## Rollback
+
+Keep your v1 files until v2 has run successfully in production. v1 files remain readable by v1-compatible releases, but v2 files are not backward compatible.
+
+## Common Pitfalls
+
+- **Unquoted durations:** `30s` works, but `30` fails.
+- **Unescaped `$`:** Passwords containing `$` may be misread as variables.
+- **Mixed versions:** Included files must all use the same version.

@@ -1,0 +1,134 @@
+## Installation
+
+This library requires **Python 3.8+** and is distributed as a standard Python package.
+
+Install it with `pip`:
+
+```bash
+pip install csvparser
+```
+
+If you are working inside a project, it is recommended to use a virtual environment first:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate      # macOS / Linux
+.venv\Scripts\activate         # Windows
+pip install csvparser
+```
+
+To confirm the installation:
+
+```bash
+python -c "import csvparser; print(csvparser.__version__)"
+```
+
+If you are installing from source, clone the repository and install in editable mode:
+
+```bash
+git clone https://github.com/your-org/csvparser.git
+cd csvparser
+pip install -e .
+```
+
+Editable mode is useful during development because local code changes are picked up immediately without reinstalling the package.
+
+---
+
+## Quick Start
+
+The library is designed to make reading and validating CSV data simple. In the most basic case, you load a file and iterate through rows as dictionaries.
+
+Suppose you have a file named `people.csv`:
+
+```csv
+name,age,city
+Alice,30,London
+Bob,25,Paris
+Charlie,35,Berlin
+```
+
+You can parse it like this:
+
+```python
+from csvparser import CSVParser
+
+parser = CSVParser("people.csv")
+rows = parser.read()
+
+for row in rows:
+    print(row)
+```
+
+Output:
+
+```python
+{'name': 'Alice', 'age': '30', 'city': 'London'}
+{'name': 'Bob', 'age': '25', 'city': 'Paris'}
+{'name': 'Charlie', 'age': '35', 'city': 'Berlin'}
+```
+
+### Reading rows one at a time
+
+For large files, use iteration instead of loading everything into memory:
+
+```python
+from csvparser import CSVParser
+
+parser = CSVParser("people.csv")
+
+for row in parser:
+    print(row["name"], row["city"])
+```
+
+### Custom delimiter
+
+If your file uses a delimiter other than a comma, specify it when creating the parser:
+
+```python
+parser = CSVParser("data.tsv", delimiter="\t")
+rows = parser.read()
+```
+
+### Header validation
+
+You can optionally require specific column names:
+
+```python
+parser = CSVParser(
+    "people.csv",
+    required_columns=["name", "age", "city"]
+)
+
+rows = parser.read()
+```
+
+If required columns are missing, the parser raises an error early, which helps catch malformed input before processing begins.
+
+---
+
+## Error Handling
+
+Wrap parsing in a `try`/`except` block to handle invalid files gracefully:
+
+```python
+from csvparser import CSVParser, CSVParserError
+
+try:
+    rows = CSVParser("people.csv").read()
+except CSVParserError as exc:
+    print(f"Failed to parse CSV: {exc}")
+```
+
+---
+
+## Next Steps
+
+Once you have basic parsing working, you can build on it by:
+
+- validating row values
+- converting string fields to integers, floats, or dates
+- skipping empty lines
+- integrating parsing into ETL scripts or web backends
+
+For full API details, see the project documentation or docstrings in the source code.

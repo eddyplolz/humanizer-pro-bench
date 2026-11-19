@@ -1,0 +1,121 @@
+## Create Calendar Event
+
+Creates a new event on a user’s calendar.
+
+### Endpoint
+
+`POST /v1/events`
+
+### Description
+
+Use this endpoint to create a calendar event with a title, start time, and end time. Optional fields include description, location, attendees, reminders, recurrence, and time zone. On success, the API returns the newly created event object, including its unique identifier.
+
+### Authentication
+
+Requires a valid bearer token:
+
+```http
+Authorization: Bearer <access_token>
+```
+
+### Request Headers
+
+| Header | Type | Required | Description |
+|--------|------|----------|-------------|
+| Authorization | string | Yes | Bearer access token |
+| Content-Type | string | Yes | Must be `application/json` |
+
+### Request Body
+
+```json
+{
+  "title": "Team Sync",
+  "start": "2026-11-20T09:00:00Z",
+  "end": "2026-11-20T09:30:00Z",
+  "description": "Weekly project status meeting",
+  "location": "Conference Room A",
+  "timezone": "UTC",
+  "attendees": [
+    "alex@example.com",
+    "sam@example.com"
+  ],
+  "reminders": [
+    {
+      "method": "email",
+      "minutesBefore": 30
+    }
+  ],
+  "recurrence": {
+    "frequency": "weekly",
+    "interval": 1
+  }
+}
+```
+
+### Body Parameters
+
+| Field | Type | Required | Description |
+|------|------|----------|-------------|
+| title | string | Yes | Event title, max 200 characters |
+| start | string | Yes | Start date/time in ISO 8601 format |
+| end | string | Yes | End date/time in ISO 8601 format |
+| description | string | No | Event details, max 5000 characters |
+| location | string | No | Event location |
+| timezone | string | No | IANA time zone, e.g. `America/New_York` |
+| attendees | array[string] | No | List of attendee email addresses |
+| reminders | array[object] | No | Reminder definitions |
+| reminders[].method | string | Yes | `email` or `popup` |
+| reminders[].minutesBefore | integer | Yes | Minutes before event start |
+| recurrence | object | No | Recurrence settings |
+| recurrence.frequency | string | No | `daily`, `weekly`, `monthly`, or `yearly` |
+| recurrence.interval | integer | No | Repeat interval, must be greater than 0 |
+
+### Response
+
+**201 Created**
+
+```json
+{
+  "id": "evt_01J9X8K7M2R4A6P9",
+  "title": "Team Sync",
+  "start": "2026-11-20T09:00:00Z",
+  "end": "2026-11-20T09:30:00Z",
+  "description": "Weekly project status meeting",
+  "location": "Conference Room A",
+  "timezone": "UTC",
+  "attendees": [
+    "alex@example.com",
+    "sam@example.com"
+  ],
+  "status": "confirmed",
+  "createdAt": "2026-11-10T14:22:31Z"
+}
+```
+
+### Error Responses
+
+| Status | Meaning |
+|--------|---------|
+| 400 Bad Request | Missing required fields, invalid JSON, or malformed dates |
+| 401 Unauthorized | Missing or invalid access token |
+| 403 Forbidden | Token does not have permission to create events |
+| 409 Conflict | Event overlaps with a protected calendar block |
+| 422 Unprocessable Entity | Validation failed, such as `end` occurring before `start` |
+
+Example error:
+
+```json
+{
+  "error": {
+    "code": "validation_error",
+    "message": "The `end` time must be later than `start`."
+  }
+}
+```
+
+### Notes
+
+- All timestamps must use ISO 8601 format.
+- If `timezone` is omitted, the calendar’s default time zone is used.
+- Attendees may receive invitations depending on account settings.
+- Recurring events may create a series rather than a single standalone event.

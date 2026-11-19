@@ -1,0 +1,96 @@
+# Commit Message Style Guide
+
+A good commit message explains **what changed** and **why**, so future readers can understand the history without reading every diff. Commit messages should be clear, consistent, and concise.
+
+## Structure
+
+Use this format:
+
+```text
+<type>: <short summary>
+
+<optional body>
+
+<optional footer>
+```
+
+### 1. Short summary
+- Keep it to **50 characters or fewer** when possible.
+- Use the **imperative mood**: “add”, “fix”, “remove”, not “added” or “fixes”.
+- Start with a lowercase type followed by a colon.
+- Do **not** end the summary with a period.
+
+Examples:
+- `fix: handle null response in user service`
+- `docs: clarify local setup steps`
+- `refactor: simplify cache invalidation logic`
+
+### 2. Body
+Use the body when the change is not obvious from the summary alone.
+
+Guidelines:
+- Wrap lines at about **72 characters**.
+- Explain **why** the change was made before describing implementation details.
+- Include context, tradeoffs, side effects, or migration notes if relevant.
+- Use short paragraphs or bullet points for readability.
+
+A useful pattern:
+- What problem existed?
+- Why was this approach chosen?
+- Are there risks or follow-up tasks?
+
+### 3. Footer
+Use footers for metadata when needed:
+- Issue references: `Refs: #123`
+- Closing references: `Closes: #456`
+- Breaking changes: `BREAKING CHANGE: config format has changed`
+
+## Recommended types
+
+Choose a small, predictable set of types. Common ones include:
+- `feat`: new functionality
+- `fix`: bug fix
+- `docs`: documentation only
+- `refactor`: code change without behavior change
+- `test`: tests added or updated
+- `chore`: maintenance, tooling, dependency updates
+- `perf`: performance improvement
+- `build`: build system or dependency management changes
+- `ci`: continuous integration changes
+
+## Best practices
+
+- Make each commit represent **one logical change**.
+- Write the message as if giving a command:
+  - “add validation for empty emails”
+  - “remove deprecated API client”
+- Be specific. Prefer:
+  - `fix: prevent duplicate invoice creation`
+  over:
+  - `fix: bug fixes`
+- If a commit is large or complex, explain it.
+- Review the message before committing; it becomes part of the permanent project history.
+
+## Avoid
+
+- Vague summaries like `update stuff` or `misc fixes`
+- Overly long subjects
+- Describing only the code, not the reason
+- Combining unrelated changes in one commit
+- Auto-generated messages left unedited, such as `WIP` or `temp`
+
+## Example
+
+```text
+fix: prevent retry loop on expired auth token
+
+The client kept retrying requests after receiving a 401 response,
+which caused unnecessary traffic and delayed user-facing errors.
+
+Stop retries when the token is expired and surface a re-auth
+prompt instead.
+
+Closes: #214
+```
+
+Consistency matters more than perfection. A simple, shared standard makes project history easier to read, search, and maintain.

@@ -1,0 +1,50 @@
+# Troubleshooting Your Home Wi-Fi Mesh System
+
+## 1. Start With the Basics
+
+Many mesh problems disappear after a simple restart. Unplug the main router and all satellite nodes, wait 30 seconds, then plug in the main router first. Once its light shows a stable status, power on the satellites one at a time.
+
+## 2. Check the Internet Source
+
+Connect a laptop directly to your modem with an Ethernet cable. If the internet is slow or absent there, the problem lies with your provider or modem, not the mesh. Restart the modem and contact your ISP if the issue persists.
+
+## 3. Identify the Problem Node
+
+Open your mesh app and check each node's status. A node showing a warning or weak connection is your likely culprit. Note which rooms experience dropouts, since this points to the faulty or poorly placed unit.
+
+## 4. Optimize Node Placement
+
+Poor placement causes most mesh complaints.
+
+- **Distance:** Place satellites about halfway between the main router and the dead zone, not inside it.
+- **Height:** Keep nodes elevated on shelves or tables, not on the floor.
+- **Obstructions:** Avoid placing them behind metal objects, inside cabinets, or near thick concrete walls.
+- **Interference:** Keep them away from microwaves, cordless phones, baby monitors, and aquariums.
+
+## 5. Use Wired Backhaul When Possible
+
+If your home has Ethernet cabling, connect satellites to the main router with cables. This frees up wireless bandwidth and significantly improves speed and stability.
+
+## 6. Update Firmware
+
+Outdated firmware can cause random disconnects and slow speeds. Open the app and check for updates. Most systems can update automatically, so enable that setting if available.
+
+## 7. Address Device-Specific Issues
+
+If only one device struggles, the mesh may not be at fault. Try forgetting the network on that device and reconnecting. Also update the device's operating system and Wi-Fi drivers. Older devices may have trouble switching between nodes, so moving closer to a node can help.
+
+## 8. Reduce Channel Congestion
+
+In crowded apartment buildings, neighboring networks can interfere. Use your app's channel optimization feature, or manually switch to a less crowded channel. Using the 5 GHz band for nearby devices also helps.
+
+## 9. Review Connected Devices
+
+Too many devices streaming or downloading simultaneously can strain bandwidth. Check your app for bandwidth-heavy devices and use Quality of Service settings to prioritize video calls or work computers.
+
+## 10. Last Resort: Factory Reset
+
+If nothing works, reset the system to factory settings using the reset button on each node, then set it up again through the app. Remember that this erases your network name, password, and custom settings.
+
+## When to Seek Help
+
+If problems continue after a reset, a node may have failed. Contact the manufacturer, since many mesh systems carry multi-year warranties that cover replacements.

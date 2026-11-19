@@ -1,0 +1,72 @@
+# Backend Team Onboarding Guide
+
+Welcome to the backend team. This guide will help you get productive quickly and understand how we work.
+
+## 1. Your First Week
+
+Your first priority is environment setup. Make sure you have access to:
+
+- Source code repositories
+- CI/CD tools
+- Cloud environments
+- Monitoring and logging platforms
+- Team communication channels
+- Documentation systems
+- Password and secrets management tools
+
+Follow the setup documentation carefully. If anything is unclear or broken, ask early. Setup issues are common, and flagging them helps improve the process for future hires.
+
+You should also schedule short introductions with your manager, onboarding buddy, and immediate teammates. Use these conversations to learn who owns which services, how the team communicates, and what current priorities are.
+
+## 2. Understand the System
+
+Backend systems are often distributed and interconnected. Start by learning:
+
+- Core services and their responsibilities
+- Main data flows between services
+- Datastores, queues, and third-party dependencies
+- Deployment process and release cadence
+- Key operational dashboards and alerts
+
+Don’t try to understand everything at once. Focus first on the systems your team directly owns, then expand outward.
+
+## 3. Development Workflow
+
+Get familiar with the team’s day-to-day engineering practices:
+
+- Branching and pull request process
+- Coding standards and testing expectations
+- Local development and debugging workflows
+- How to run unit, integration, and end-to-end tests
+- How changes move from development to production
+
+Before opening your first PR, review a few recent ones to understand team norms around code quality, comments, and review speed.
+
+## 4. Production Mindset
+
+Backend engineers are responsible not just for writing code, but for operating reliable systems. Learn how the team handles:
+
+- Logging and observability
+- Incident response and escalation
+- Rollbacks and safe deployments
+- Performance, scalability, and cost awareness
+- Security and data privacy requirements
+
+When making changes, think beyond correctness. Consider failure modes, monitoring, and impact on downstream systems.
+
+## 5. Your First Tasks
+
+Start with small, low-risk changes such as:
+
+- Fixing a minor bug
+- Improving documentation
+- Adding or updating tests
+- Making a small internal tooling improvement
+
+These tasks help you learn the codebase, deployment pipeline, and review process without too much risk. Aim to ship something small in your first two weeks.
+
+## 6. How to Succeed
+
+Ask questions early and often. Backend systems can be complex, and context is rarely obvious from code alone. Keep notes as you learn, especially around architecture, service ownership, and recurring team terms.
+
+Finally, remember that onboarding is a shared responsibility. Your job is to stay curious and proactive; the team’s job is to support you. Progress matters more than speed. Focus on building a solid foundation, and productivity will follow.

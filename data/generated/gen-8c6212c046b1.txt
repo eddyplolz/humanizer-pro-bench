@@ -1,0 +1,34 @@
+## Public Bike-Share Service FAQ
+
+### 1. What is the bike-share service?
+Our bike-share service offers a convenient, affordable, and eco-friendly way to travel around the city. You can unlock a bike at one station, ride to your destination, and return it to any available station in the network.
+
+### 2. How do I sign up?
+You can sign up through our mobile app or website. Simply create an account, choose a pass or membership, and add a payment method. Once registered, you can unlock bikes directly from the app.
+
+### 3. What types of passes are available?
+We offer several options to fit different needs, including single rides, day passes, and monthly or annual memberships. Short-term passes are great for visitors, while memberships are ideal for regular riders. Current prices are listed on our website and app.
+
+### 4. How do I unlock a bike?
+Open the app, find a nearby station or available bike, and scan the QR code or enter the bike number. The lock will release automatically. If you have any trouble, customer support is available to help.
+
+### 5. Where can I return a bike?
+Bikes should be returned to any official bike-share station with an open dock. Be sure the bike is securely locked into place and wait for confirmation in the app to avoid extra charges.
+
+### 6. Is there a time limit for rides?
+Yes. Ride time limits depend on the pass or membership you purchase. Extra fees may apply if you exceed the included ride period. You can check your ride details at any time in the app.
+
+### 7. What if a station is full?
+If your destination station is full, the app will show nearby stations with open docks. In some cases, you may be eligible for a grace period to return the bike at the next closest station.
+
+### 8. What should I do if a bike is damaged?
+If you notice a problem before or during your ride, please report it in the app immediately and choose another bike if needed. This helps us keep the fleet safe and in good condition.
+
+### 9. Do I need to wear a helmet?
+Helmet use is strongly recommended for all riders and may be required by local law for certain age groups. Please check local regulations before riding.
+
+### 10. What happens if a bike is lost or stolen?
+If your bike is lost or stolen during your rental, contact customer support right away and file a police report if required. Charges may apply until the bike is recovered or the case is resolved.
+
+### 11. How can I contact customer support?
+Customer support is available through the app, website, or by phone. Visit our Help section for current contact details and service hours.

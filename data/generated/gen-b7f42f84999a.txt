@@ -1,0 +1,54 @@
+# Release Notes — Version 2.0
+
+We’re excited to introduce **Version 2.0** of our note-taking app — a major update focused on speed, organization, and a smoother writing experience. This release brings powerful new tools for capturing ideas, keeping notes structured, and working more efficiently across devices.
+
+## What’s New
+
+### Smarter Organization
+Keeping track of your notes is now easier than ever. Version 2.0 introduces:
+- **Nested folders** for better structure and cleaner workspaces
+- **Tags and tag filtering** to quickly group related notes
+- **Pinned notes** so your most important content stays at the top
+- **Improved search** with faster results and better matching for titles and note content
+
+### Redesigned Editor
+We’ve refreshed the editor to make writing feel more natural and distraction-free:
+- Cleaner interface with improved spacing and readability
+- Faster formatting controls
+- Better support for long-form notes
+- More reliable autosave while you type
+
+Whether you’re jotting down a quick reminder or drafting detailed meeting notes, the new editor is built to stay out of your way.
+
+### Sync and Performance Improvements
+Version 2.0 includes major under-the-hood upgrades:
+- **Faster sync across devices**
+- Improved app launch time
+- Smoother scrolling in large notebooks
+- Reduced loading delays when opening notes
+- Better stability during low-connectivity use
+
+These changes make the app feel noticeably quicker and more dependable throughout the day.
+
+## New Quality-of-Life Features
+We’ve also added several highly requested improvements:
+- **Recently deleted** section for recovering notes you removed by mistake
+- **Duplicate note** option for reusing templates or recurring formats
+- **Bulk actions** for moving, tagging, or deleting multiple notes at once
+- **Keyboard shortcut improvements** for faster navigation and editing
+
+## Bug Fixes
+Version 2.0 also resolves a number of issues reported by users, including:
+- Fix for occasional duplicate notes after syncing
+- Fix for editor cursor jumps in longer documents
+- Fix for inconsistent checkbox behavior
+- Fix for note list refresh delays
+- Fix for rare crashes when switching accounts
+
+## Compatibility Notes
+Version 2.0 requires the latest supported version of your operating system for the best experience. If you use sync across multiple devices, we recommend updating all devices to ensure full compatibility with the new organization features.
+
+## Thank You
+Your feedback helped shape this release, and we’re grateful for everyone who shared ideas, bug reports, and feature requests. Version 2.0 is a big step forward, and we’re already working on what comes next.
+
+Update now to explore a faster, more organized, and more reliable note-taking experience.

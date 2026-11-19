@@ -1,0 +1,115 @@
+# Migration Guide: Config Format v1 → v2
+
+Version 2 of the configuration format introduces a cleaner structure, stricter typing, and more explicit naming. This guide highlights the key changes and shows how to update existing v1 files.
+
+## Summary of Breaking Changes
+
+1. Top-level keys have been reorganized into sections.
+2. Several field names have changed.
+3. Boolean and numeric values must now use proper YAML/JSON types, not strings.
+4. Environment-specific overrides moved to a dedicated `environments` block.
+5. Deprecated fields from v1 are no longer supported.
+
+## Key Changes
+
+### 1. Top-level structure
+
+In v1, most settings lived at the root level. In v2, settings are grouped:
+
+- `server`
+- `logging`
+- `auth`
+- `environments`
+
+### 2. Renamed fields
+
+Common renames include:
+
+- `host` → `server.host`
+- `port` → `server.port`
+- `logLevel` → `logging.level`
+- `logFile` → `logging.file`
+- `enableAuth` → `auth.enabled`
+
+### 3. Strict value types
+
+In v1, values like `"true"` or `"8080"` were often accepted as strings. In v2, use native types:
+
+- `"true"` → `true`
+- `"8080"` → `8080`
+
+### 4. Environment overrides
+
+v1 often used flattened keys such as `dev_host` or `prod_port`. In v2, these belong under:
+
+```yaml
+environments:
+  dev:
+    server:
+      host: ...
+  prod:
+    server:
+      port: ...
+```
+
+## Example Migration
+
+### v1
+
+```yaml
+host: "localhost"
+port: "8080"
+logLevel: "debug"
+logFile: "/var/log/app.log"
+enableAuth: "true"
+dev_host: "dev.local"
+prod_host: "prod.example.com"
+```
+
+### v2
+
+```yaml
+server:
+  host: localhost
+  port: 8080
+
+logging:
+  level: debug
+  file: /var/log/app.log
+
+auth:
+  enabled: true
+
+environments:
+  dev:
+    server:
+      host: dev.local
+  prod:
+    server:
+      host: prod.example.com
+```
+
+## Removed Fields
+
+The following v1 fields are no longer supported in v2:
+
+- `timeoutMs` — replaced by `server.timeout` in seconds
+- `authModeLegacy` — removed; use `auth.provider`
+- `debug` — replaced by `logging.level: debug`
+
+## Migration Tips
+
+- Validate the file with the v2 schema before deployment.
+- Update automation scripts that read old field names.
+- Watch for quoted booleans and numbers, which now fail validation.
+- Migrate incrementally in a staging environment first.
+
+## Final Checklist
+
+- [ ] Nest root settings under the correct sections
+- [ ] Rename deprecated keys
+- [ ] Convert stringified booleans/numbers to native types
+- [ ] Move environment-specific values into `environments`
+- [ ] Remove unsupported legacy fields
+
+Once these updates are complete, your configuration should be fully compatible with version 2.

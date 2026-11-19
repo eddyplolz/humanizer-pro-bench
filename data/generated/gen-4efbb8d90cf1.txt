@@ -1,0 +1,29 @@
+# Rosetta Stone
+
+The **Rosetta Stone** is a fragment of a granodiorite stele inscribed with a decree issued at Memphis, Egypt, in 196 BC during the Ptolemaic dynasty on behalf of King Ptolemy V Epiphanes. The decree appears in three scripts: Ancient Egyptian hieroglyphs, Demotic script, and Ancient Greek. Because the same text appears in all three, the stone provided the key to modern understanding of Egyptian hieroglyphs. It is held in the British Museum in London, where it has been on near-continuous display since 1802 and is among the museum's most visited objects.
+
+## Discovery
+
+The stone was found on 15 July 1799 by French soldiers under Napoleon Bonaparte's Egyptian campaign. Lieutenant Pierre-François Bouchard, who was strengthening defenses near the town of Rashid (Rosetta) in the Nile Delta, recognized the potential importance of the slab. It is generally believed to have originally been displayed in a temple, possibly at Sais, before being moved during the medieval period and reused as building material.
+
+After the French defeat in Egypt, the stone passed to British forces under the Treaty of Alexandria (1801). It was transported to England and presented to the British Museum in 1802. Egypt has since requested its return, and the matter remains a prominent example of debates over cultural heritage.
+
+## Content
+
+The decree, issued by a council of priests, affirms the royal cult of the 13-year-old Ptolemy V on the first anniversary of his coronation. It lists the benefactions the king had granted to temples and priests, such as tax reductions, and details his suppression of rebellions. It also orders that copies of the decree be placed in temples throughout the country. The Rosetta Stone is believed to be one of these copies.
+
+## Decipherment
+
+Greek was well understood by scholars, so the Greek portion offered an immediate means of interpreting the other texts. Early progress was made by Silvestre de Sacy and Johan David Åkerblad, who identified some names and words in the Demotic text. Thomas Young, an English polymath, demonstrated that the cartouches in the hieroglyphic text enclosed royal names such as Ptolemy.
+
+The decisive breakthrough came from Jean-François Champollion, who announced his decipherment in 1822. Building on the earlier work, and drawing on his knowledge of Coptic, he showed that hieroglyphs combined phonetic signs with ideographic elements. This opened the way to reading the vast body of Egyptian inscriptions and papyri.
+
+## Legacy
+
+The phrase "Rosetta Stone" has entered common usage to denote a critical clue to a new field of knowledge. It also lends its name to a language-learning software brand and to the European Space Agency's Rosetta space probe.
+
+## See also
+
+- Egyptian hieroglyphs
+- Jean-François Champollion
+- Ptolemaic Kingdom

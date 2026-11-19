@@ -1,0 +1,69 @@
+# Design Proposal: Caching Layer for Web API
+
+## Overview
+This document proposes a caching layer for the web API to reduce response latency, decrease backend load, and improve scalability. The cache will store frequently requested API responses and serve them without requiring repeated database or downstream service calls.
+
+## Goals
+- Reduce average API response time
+- Lower database and service load
+- Improve throughput during traffic spikes
+- Maintain acceptable data freshness
+- Provide observability into cache behavior
+
+## Non-Goals
+- Replacing the primary database
+- Caching highly sensitive or user-specific data without additional controls
+- Guaranteeing perfectly fresh data for all endpoints
+
+## Architecture
+The caching layer will be deployed between the API application and backend data sources. The API will first check the cache for a stored response. If a cached entry exists and is valid, it is returned immediately. Otherwise, the API fetches data from the source, returns the response, and writes it to cache.
+
+A distributed in-memory store such as Redis is recommended due to low latency, support for expiration, and operational maturity. For static or public GET endpoints, a CDN or edge cache may also be added later.
+
+## Cache Strategy
+The initial implementation will use **cache-aside**:
+1. Client requests resource
+2. API looks up cache key
+3. On hit, return cached response
+4. On miss, fetch from backend
+5. Store result in cache with TTL
+6. Return response
+
+This approach is simple, explicit, and works well for read-heavy workloads.
+
+## Key Design
+Cache keys should be deterministic and include:
+- Endpoint path
+- Normalized query parameters
+- API version
+- Relevant request context such as locale
+
+Example:  
+`v1:products:list:category=books:page=2:locale=en-US`
+
+## Expiration and Invalidation
+Each cached item will have a TTL based on endpoint volatility:
+- Reference data: 1–24 hours
+- Frequently updated entities: 1–5 minutes
+- Aggregated results: 30–120 seconds
+
+Invalidation should occur on writes affecting cached resources. For example, when a product is updated, related product detail and listing keys should be deleted or versioned. Where exact invalidation is difficult, shorter TTLs should be used.
+
+## Reliability Considerations
+To avoid cache stampedes, the system should support request coalescing or soft TTL with background refresh. Negative caching may be used briefly for known missing resources to reduce repeated misses. If the cache is unavailable, the API must gracefully fall back to the backend.
+
+## Security
+Sensitive data should not be cached unless encrypted and scoped per user. Public and shared caches must exclude authenticated or personalized responses by default.
+
+## Observability
+Metrics should include:
+- Cache hit rate
+- Miss rate
+- Eviction rate
+- Latency by endpoint
+- Backend request reduction
+
+Structured logs and dashboards should be added to monitor effectiveness.
+
+## Rollout Plan
+Start with a small set of high-read, low-volatility GET endpoints. Measure hit rate and latency improvements, then expand gradually. This phased rollout minimizes risk while validating real-world impact.

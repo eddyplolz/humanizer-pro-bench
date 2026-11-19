@@ -1,0 +1,64 @@
+# Pivot Tables: A User Guide
+
+## What Is a Pivot Table?
+
+A pivot table summarizes large datasets without requiring formulas. It lets you group, count, total, and average your data, then rearrange it in seconds to view it from different angles. Use one when you need answers like "What were total sales by region?" or "How many orders did each rep close per month?"
+
+## Before You Begin
+
+Make sure your data is ready:
+
+- **Include headers.** Every column needs a unique, nonblank title.
+- **Avoid blank rows or columns.** These can cause the table to miss data.
+- **Keep data consistent.** Each column should contain one type of information, such as dates or numbers only.
+
+## Creating a Pivot Table
+
+1. Click any cell inside your data range.
+2. Open the **Insert** menu and choose **Pivot Table**.
+3. Confirm the data range shown is correct.
+4. Choose a destination: a new sheet (recommended) or an existing location.
+5. Click **OK** or **Create**.
+
+An empty pivot table appears, along with a field panel listing your column headers.
+
+## Understanding the Four Areas
+
+The field panel contains four boxes. Drag fields into them to build your report.
+
+- **Rows:** Categories listed down the left side (for example, Product).
+- **Columns:** Categories listed across the top (for example, Quarter).
+- **Values:** The numbers being calculated (for example, Sum of Revenue).
+- **Filters:** Fields that let you limit the whole table to specific items, such as a single year.
+
+## Example
+
+Suppose your data has columns for Region, Salesperson, Month, and Revenue. To see revenue by region and month:
+
+1. Drag **Region** to Rows.
+2. Drag **Month** to Columns.
+3. Drag **Revenue** to Values.
+
+The table now displays total revenue for each region-month combination, with grand totals along the edges.
+
+## Changing the Calculation
+
+By default, numeric fields are summed. To change this, click the field in the Values box, select **Value Field Settings**, and choose another function, such as Count, Average, Max, or Min. You can also display values as a percentage of the total.
+
+## Refining Your Report
+
+- **Sort:** Click the dropdown arrow beside a row or column label.
+- **Filter:** Use the same arrow to uncheck items you want to hide.
+- **Group:** Right-click dates to group them by month, quarter, or year.
+- **Rearrange:** Drag fields between areas to see the data differently.
+
+## Keeping Data Current
+
+Pivot tables don't update automatically when source data changes. Right-click the table and select **Refresh**. If you've added new rows, you may need to update the source range under **Change Data Source**.
+
+## Troubleshooting
+
+- **Numbers counted instead of summed:** The column likely contains text or blanks. Clean the data and refresh.
+- **Dates won't group:** Some entries may be stored as text. Convert them to true dates.
+
+With a little practice, pivot tables become one of the fastest ways to analyze data.

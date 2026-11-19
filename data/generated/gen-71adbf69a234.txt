@@ -1,0 +1,21 @@
+**Startup Recalls Faulty Home Battery After Overheating Reports**
+
+A fast-growing home energy startup has issued a voluntary recall of one of its residential battery systems after reports that a defect could cause the unit to overheat, raising concerns about fire risk in homes where the product was installed.
+
+The company, **VoltNest Energy**, said Tuesday that it is recalling about **8,200 units** of its **PowerVault S1** battery, a wall-mounted system designed to store electricity from rooftop solar panels or provide backup power during outages. The recalled batteries were sold in the United States between **March 2024 and September 2026** through solar installers and the company’s website.
+
+In a statement, VoltNest said it had received **27 reports of overheating**, including **five incidents involving minor property damage**, such as scorched walls and melted wiring insulation. No serious injuries have been reported, though the company said two customers sought medical evaluation for possible smoke inhalation.
+
+The startup said the issue appears to stem from a manufacturing defect in a batch of lithium iron phosphate battery modules supplied by a third-party vendor. Under certain charging conditions, the company said, an internal component can fail, potentially leading to excessive heat buildup.
+
+“We are acting out of an abundance of caution,” VoltNest Chief Executive Maya Levin said in the statement. “Customer safety is our top priority, and we are working closely with regulators, installers and homeowners to replace affected units as quickly as possible.”
+
+Customers are being advised to **shut down the battery immediately** using the system’s main disconnect switch and to avoid attempting repairs or removal on their own. VoltNest said it will provide **free inspections, software diagnostics and unit replacements** where necessary. The company has also released a firmware update intended to reduce charging stress while replacement plans are carried out, though it emphasized that the software patch is **not a substitute for the recall**.
+
+The recall was announced in coordination with the **U.S. Consumer Product Safety Commission**, which urged owners to follow the company’s shutdown instructions and contact VoltNest or their installer. The agency said recalled units can be identified by serial numbers beginning with **PVS1-24** and **PVS1-25**.
+
+The incident marks a significant test for VoltNest, a venture-backed startup that has positioned itself as a lower-cost rival in the booming home battery market. Founded in 2021, the company has expanded rapidly as demand for residential backup power grows amid more frequent extreme weather and strain on electric grids.
+
+Industry analysts said the recall could temporarily slow the company’s momentum, but how it handles the response may prove more important than the defect itself.
+
+“Recalls are damaging, especially for a young brand,” said energy storage analyst Daniel Cho. “But in this industry, transparency and speed matter. Homeowners need confidence that these systems are safe inside their garages and utility rooms.”

@@ -1,0 +1,117 @@
+# photodate
+
+Rename your photos by the date they were taken. `photodate` reads EXIF metadata and renames files to a consistent, sortable format like `2024-07-14_15-32-08.jpg`.
+
+## Features
+
+- Reads the original capture date from EXIF data
+- Falls back to the file's modified time when EXIF is missing
+- Customizable filename templates
+- Dry-run mode to preview changes
+- Automatic handling of duplicate timestamps
+- Undo support for the most recent run
+- Works on JPEG, HEIC, PNG, TIFF, and common RAW formats
+
+## Installation
+
+With pip:
+
+```bash
+pip install photodate
+```
+
+Or from source:
+
+```bash
+git clone https://github.com/example/photodate.git
+cd photodate
+pip install .
+```
+
+Requires Python 3.9 or newer.
+
+## Usage
+
+```bash
+photodate [OPTIONS] PATH...
+```
+
+`PATH` can be one or more files or directories.
+
+### Quick start
+
+Preview what would change:
+
+```bash
+photodate --dry-run ~/Pictures/vacation
+```
+
+Rename for real:
+
+```bash
+photodate ~/Pictures/vacation
+```
+
+Include subfolders:
+
+```bash
+photodate --recursive ~/Pictures
+```
+
+## Options
+
+| Option | Description |
+|---|---|
+| `-n`, `--dry-run` | Show planned renames without changing anything |
+| `-r`, `--recursive` | Process directories recursively |
+| `-f`, `--format TEMPLATE` | Filename template (default: `%Y-%m-%d_%H-%M-%S`) |
+| `--fallback [mtime\|skip]` | What to do when EXIF is missing (default: `mtime`) |
+| `--prefix TEXT` | Add a prefix to every filename |
+| `--lowercase-ext` | Convert file extensions to lowercase |
+| `--undo` | Revert the last run |
+| `-v`, `--verbose` | Print every rename |
+
+## Templates
+
+Templates use standard `strftime` codes:
+
+```bash
+photodate --format "%Y/%m/IMG_%Y%m%d_%H%M%S" photos/
+```
+
+| Code | Meaning |
+|---|---|
+| `%Y` | Four-digit year |
+| `%m` | Month (01–12) |
+| `%d` | Day of month |
+| `%H` `%M` `%S` | Hour, minute, second |
+
+## Duplicate timestamps
+
+Burst shots often share the same timestamp. When names collide, `photodate` appends a counter:
+
+```
+2024-07-14_15-32-08.jpg
+2024-07-14_15-32-08_2.jpg
+2024-07-14_15-32-08_3.jpg
+```
+
+Existing files are never overwritten.
+
+## Undo
+
+Each run writes a log to `~/.photodate/last_run.json`. To revert:
+
+```bash
+photodate --undo
+```
+
+Only the most recent run can be undone.
+
+## Contributing
+
+Bug reports and pull requests are welcome. Please run `pytest` before submitting changes.
+
+## License
+
+MIT

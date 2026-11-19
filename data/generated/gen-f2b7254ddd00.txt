@@ -1,0 +1,32 @@
+# Voyager 1
+
+**Voyager 1** is a space probe launched by NASA on September 5, 1977, as part of the Voyager program to study the outer Solar System and interstellar space. Launched sixteen days after its twin, Voyager 2, it is the most distant human-made object from Earth, traveling at roughly 17 kilometers per second (about 61,000 km/h) relative to the Sun.
+
+## Mission background
+
+The Voyager program took advantage of a rare alignment of the outer planets that occurs about once every 175 years, allowing spacecraft to use gravity assists to travel between multiple planets. The probes were built by NASA's Jet Propulsion Laboratory (JPL) and originally funded for a four-year mission to Jupiter and Saturn.
+
+## Spacecraft design
+
+Voyager 1 has a mass of about 825 kilograms at launch and carries a 3.7-meter high-gain antenna for communication with the Deep Space Network. Power is supplied by three radioisotope thermoelectric generators (RTGs) that convert heat from decaying plutonium-238 into electricity. Output declines by several watts each year, forcing engineers to switch off nonessential instruments and heaters over time. The spacecraft also carries the **Golden Record**, a gold-plated phonograph record containing sounds, images, and music representing life and culture on Earth.
+
+## Planetary encounters
+
+Voyager 1 made its closest approach to **Jupiter** on March 5, 1979, revealing active volcanism on the moon Io, the first volcanic activity observed beyond Earth. It reached **Saturn** on November 12, 1980, and returned detailed images of the planet's rings and of its largest moon, Titan, whose thick atmosphere was studied closely. The Titan flyby bent the probe's trajectory out of the ecliptic plane, ending its planetary tour. In 1990, it captured the "Family Portrait" of the Solar System, including the image of Earth known as the *Pale Blue Dot*.
+
+## Interstellar mission
+
+On August 25, 2012, Voyager 1 crossed the heliopause, the boundary where the Sun's solar wind gives way to the interstellar medium, becoming the first spacecraft to enter interstellar space. Its plasma wave instrument measured a sharp rise in plasma density that confirmed the crossing.
+
+In November 2023, the probe began sending unintelligible data because of a fault in one of its onboard computers. Engineers at JPL diagnosed a corrupted memory chip in the flight data subsystem and, in 2024, restored communication by relocating the affected code, a remarkable feat given the spacecraft's distance of over 24 billion kilometers.
+
+## Future
+
+Voyager 1 continues to transmit data on magnetic fields, cosmic rays, and plasma. Mission planners expect the RTGs to power at least one instrument into the mid-2020s, possibly later. At around 1977 technology levels, the probe will drift silently through the Milky Way, passing within about 1.6 light-years of the star Gliese 445 in roughly 40,000 years.
+
+## See also
+
+- Voyager 2
+- Voyager program
+- Pioneer 10
+- Golden Record

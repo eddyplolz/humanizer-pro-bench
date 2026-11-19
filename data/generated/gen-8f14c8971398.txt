@@ -1,0 +1,120 @@
+# csvkit-lite
+
+A small, dependency-free Python library for parsing CSV files with type inference, header handling, and streaming support.
+
+## Requirements
+
+- Python 3.8 or newer
+- No third-party dependencies
+
+## Installation
+
+Install from PyPI using pip:
+
+```bash
+pip install csvkit-lite
+```
+
+To install the latest development version directly from GitHub:
+
+```bash
+pip install git+https://github.com/example/csvkit-lite.git
+```
+
+For an isolated setup, use a virtual environment:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate    # On Windows: .venv\Scripts\activate
+pip install csvkit-lite
+```
+
+Verify the installation:
+
+```bash
+python -c "import csvkit_lite; print(csvkit_lite.__version__)"
+```
+
+## Quick Start
+
+Suppose you have a file called `people.csv`:
+
+```csv
+name,age,city
+Alice,34,Boston
+Bob,28,Denver
+Carol,41,Austin
+```
+
+### Reading rows as dictionaries
+
+```python
+from csvkit_lite import read_csv
+
+for row in read_csv("people.csv"):
+    print(row["name"], row["age"])
+```
+
+By default, the first line is treated as a header, and each row is returned as a dictionary.
+
+### Automatic type conversion
+
+Enable type inference to convert numbers and booleans automatically:
+
+```python
+rows = list(read_csv("people.csv", infer_types=True))
+print(rows[0]["age"] + 1)   # 35, since age is an int
+```
+
+### Custom delimiters and headers
+
+Use the `delimiter` option for tab-separated or semicolon-separated files. If your file has no header row, supply column names yourself:
+
+```python
+rows = read_csv(
+    "data.tsv",
+    delimiter="\t",
+    header=False,
+    columns=["id", "score", "label"],
+)
+```
+
+### Streaming large files
+
+`read_csv` returns a generator, so rows are read lazily and memory usage stays low even for large files:
+
+```python
+total = 0
+for row in read_csv("huge.csv", infer_types=True):
+    total += row["amount"]
+print(total)
+```
+
+### Loading everything at once
+
+If you prefer a simple list, wrap the call:
+
+```python
+data = list(read_csv("people.csv"))
+```
+
+## Handling Errors
+
+Malformed rows raise a `CSVParseError` that includes the line number:
+
+```python
+from csvkit_lite import read_csv, CSVParseError
+
+try:
+    rows = list(read_csv("broken.csv"))
+except CSVParseError as err:
+    print(f"Problem on line {err.line}: {err}")
+```
+
+Pass `skip_errors=True` to ignore bad rows instead.
+
+## Next Steps
+
+- Run the tests with `pytest`
+- Read the full API reference in the `docs/` folder
+- Report bugs on the GitHub issue tracker

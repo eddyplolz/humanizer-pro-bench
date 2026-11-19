@@ -1,0 +1,21 @@
+**Major Hospital Network Reports Data Breach Affecting Thousands of Patients**
+
+A large regional hospital network disclosed Tuesday that it is investigating a data breach that may have exposed the personal and medical information of thousands of patients, raising fresh concerns about cybersecurity vulnerabilities in the healthcare sector.
+
+The network, which operates several hospitals, outpatient clinics, and specialty care centers across the region, said suspicious activity was detected in its computer systems earlier this month. In a statement, officials said the organization moved quickly to contain the incident, launched an internal investigation, and hired outside cybersecurity experts to determine the scope of the breach.
+
+Preliminary findings suggest that unauthorized actors may have gained access to patient records containing names, dates of birth, addresses, phone numbers, medical record numbers, insurance details, and, in some cases, limited clinical information. Hospital officials said there is currently no evidence that financial account or payment card data was compromised, though the investigation remains ongoing.
+
+“We take the privacy and security of our patients’ information extremely seriously,” the hospital network said in its statement. “Upon discovering this issue, we immediately implemented containment measures, notified law enforcement, and began working with leading forensic specialists to assess what information may have been affected.”
+
+The hospital network did not disclose the exact number of patients involved, but described the breach as “significant.” Affected individuals are expected to be notified by mail in the coming weeks. The organization said it will offer complimentary credit monitoring and identity protection services to eligible patients as a precaution.
+
+Hospital operations have continued during the investigation, though some administrative systems were temporarily taken offline, causing delays in scheduling and access to certain online services. Emergency departments and inpatient care were not disrupted, according to officials.
+
+Cybersecurity experts say healthcare organizations remain attractive targets for hackers because of the volume of sensitive personal and medical data they hold. Unlike stolen credit card numbers, medical records can contain permanent identifying details that may be used for identity theft, insurance fraud, or phishing attacks.
+
+“This type of incident can have long-lasting consequences for patients,” said one data privacy analyst not affiliated with the hospital network. “Even if clinical care is unaffected, the loss of trust can be substantial, especially when health information is involved.”
+
+Regulators are likely to review the breach under federal health privacy rules, including the Health Insurance Portability and Accountability Act, or HIPAA, which requires covered entities to safeguard patient information and notify individuals when certain breaches occur.
+
+Patients are being advised to remain alert for unexpected bills, insurance statements, or suspicious emails and phone calls referencing their medical care. The hospital network said it is strengthening system security, reviewing access controls, and taking additional steps to prevent similar incidents in the future.

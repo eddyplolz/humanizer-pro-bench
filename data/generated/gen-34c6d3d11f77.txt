@@ -1,0 +1,83 @@
+## Pivot Tables User Guide
+
+A pivot table helps you summarize and analyze large sets of spreadsheet data quickly. Instead of manually sorting, filtering, or writing formulas, you can use a pivot table to group information, calculate totals, and spot trends.
+
+### When to Use a Pivot Table
+Use a pivot table when you want to:
+- Total sales by region, product, or salesperson
+- Count records, such as customers or orders
+- Compare values across categories
+- Rearrange data without changing the original table
+- Explore patterns in large datasets
+
+### Before You Begin
+For best results, make sure your source data:
+- Is organized in rows and columns
+- Has a single header row
+- Contains no completely blank rows or columns
+- Uses consistent data types in each column, such as dates, numbers, or text
+
+Example source columns might include: `Date`, `Region`, `Product`, `Salesperson`, `Units`, and `Revenue`.
+
+### Creating a Pivot Table
+1. Select any cell in your data range.
+2. Open the **Insert** menu and choose **Pivot Table**.
+3. Confirm the data range.
+4. Choose where to place the pivot table:
+   - New worksheet
+   - Existing worksheet
+5. Click **Create** or **OK**.
+
+A blank pivot table layout and a field list will appear.
+
+### Understanding the Pivot Table Areas
+Most pivot-table tools include four layout areas:
+
+- **Rows**: Displays categories vertically
+- **Columns**: Displays categories horizontally
+- **Values**: Shows calculations such as sum, count, or average
+- **Filters**: Lets you limit the data shown
+
+### Building a Basic Pivot Table
+To summarize total revenue by region:
+1. Drag **Region** to **Rows**.
+2. Drag **Revenue** to **Values**.
+
+The pivot table will show each region with its total revenue.
+
+To compare revenue by region and product:
+1. Keep **Region** in **Rows**.
+2. Drag **Product** to **Columns**.
+3. Keep **Revenue** in **Values**.
+
+### Changing Calculations
+A value field can often be summarized in different ways, such as:
+- Sum
+- Count
+- Average
+- Minimum
+- Maximum
+
+To change a calculation:
+1. Click the value field in the pivot table or field settings.
+2. Open **Value Field Settings** or **Summarize By**.
+3. Choose the calculation you want.
+
+### Filtering and Sorting
+You can refine results by:
+- Applying a report filter, such as showing only one year
+- Sorting row labels alphabetically or by value
+- Expanding or collapsing grouped items
+
+### Refreshing the Pivot Table
+If the source data changes, refresh the pivot table to update results:
+1. Click anywhere in the pivot table.
+2. Select **Refresh** from the pivot-table toolbar or context menu.
+
+### Tips
+- Use clear column names in your source data
+- Format numbers for readability, such as currency or percentages
+- If dates do not group correctly, check that they are stored as real dates
+- Keep source data unchanged and use the pivot table for analysis
+
+Pivot tables are powerful because they let you reorganize data instantly, making reporting and decision-making faster and easier.

@@ -1,0 +1,64 @@
+# Design Document: API Caching Layer
+
+## Overview
+
+This document proposes adding a distributed caching layer to our web API to reduce database load, lower response latency, and improve scalability under peak traffic.
+
+## Problem Statement
+
+Our API currently queries the primary PostgreSQL database for every request. Profiling shows that 80% of traffic hits read-only endpoints (product catalogs, user profiles, configuration data), many returning identical results across requests. During peak hours, p95 latency exceeds 800ms and database CPU regularly reaches 85%.
+
+## Goals
+
+- Reduce p95 latency on read endpoints to under 150ms
+- Cut database read load by at least 60%
+- Maintain acceptable data freshness (staleness under 60 seconds for most resources)
+- Avoid changes to client-facing API contracts
+
+## Non-Goals
+
+- Caching authenticated write operations
+- Replacing the database as the source of truth
+
+## Proposed Solution
+
+Introduce **Redis** as a cache-aside layer between the API servers and the database.
+
+**Read path:** The API checks Redis using a deterministic key (e.g., `product:v1:{id}`). On a hit, it returns the cached value. On a miss, it queries the database, stores the result with a TTL, and returns it.
+
+**Write path:** Upon update or deletion, the API invalidates the relevant keys. List and search results use short TTLs (30 seconds) instead of explicit invalidation, since tracking dependencies is error-prone.
+
+**Key design:**
+- Version prefixes allow bulk invalidation after schema changes
+- Per-user data includes the user ID in the key to prevent leakage
+
+**TTL strategy:**
+
+| Resource | TTL |
+|---|---|
+| Configuration | 10 min |
+| Product details | 5 min (plus invalidation) |
+| Lists/search | 30 sec |
+
+## Risks and Mitigations
+
+- **Stampedes:** When popular keys expire, many requests may hit the database simultaneously. We will use request coalescing and add random jitter (±10%) to TTLs.
+- **Stale data:** Explicit invalidation on writes plus conservative TTLs limit exposure.
+- **Redis outage:** The API will fall back to the database with a circuit breaker, accepting degraded performance rather than failure.
+- **Memory growth:** Enforce `allkeys-lru` eviction and monitor memory usage.
+
+## Rollout Plan
+
+1. Deploy a managed Redis cluster with replication
+2. Implement caching behind a feature flag, starting with configuration endpoints
+3. Roll out to 10%, then 50%, then 100% of traffic per endpoint
+4. Monitor hit rate, latency, and error rates at each stage
+
+## Success Metrics
+
+Cache hit rate above 75%, p95 latency under 150ms, and database CPU below 50% at peak.
+
+## Open Questions
+
+- Should we add an in-process L1 cache for extremely hot keys?
+- Is a CDN appropriate for public, unauthenticated endpoints?

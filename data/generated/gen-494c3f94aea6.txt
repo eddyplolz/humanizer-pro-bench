@@ -1,0 +1,89 @@
+# Runbook: Restarting a Stuck Message Queue
+
+**Purpose:** Restore message processing when a queue has stopped consuming or is backing up.
+**Audience:** On-call engineers
+**Estimated time:** 15-30 minutes
+
+---
+
+## 1. Confirm the Problem
+
+Before acting, verify the queue is actually stuck rather than slow.
+
+- Check queue depth: is it growing steadily?
+- Check consumer count: are consumers connected?
+- Check message age: is the oldest message unusually old?
+- Review consumer logs for errors, deadlocks, or repeated retries.
+
+If consumers are healthy and depth is falling, wait and monitor instead.
+
+## 2. Assess Impact
+
+- Identify upstream producers and downstream consumers.
+- Notify the incident channel that you are investigating.
+- Determine whether messages are safe to delay or must be preserved at all costs.
+
+## 3. Capture Diagnostic Data
+
+Do this **before** restarting, since a restart destroys evidence.
+
+- Export queue metrics and screenshots of dashboards.
+- Save consumer logs from the last 30 minutes.
+- Take a thread dump or heap snapshot from a stuck consumer if possible.
+- Note the current queue depth and oldest message timestamp.
+
+## 4. Check for a Poison Message
+
+A single malformed message often blocks processing.
+
+- Inspect the head of the queue.
+- If the same message is redelivered repeatedly, move it to the dead-letter queue (DLQ) manually.
+- Resume consumers and check whether processing recovers.
+
+## 5. Restart Consumers First
+
+This is the least disruptive option.
+
+1. Stop the consumer service gracefully.
+2. Wait for in-flight messages to be acknowledged or timed out.
+3. Start consumers one at a time.
+4. Watch consumer count and depth for 5 minutes.
+
+## 6. Restart the Broker (Only If Necessary)
+
+If consumers restart cleanly but the queue remains stuck:
+
+1. Confirm messages are persisted to disk (durable queues).
+2. Announce the restart in the incident channel.
+3. In clustered setups, restart one node at a time and wait for it to rejoin and sync.
+4. Never restart all nodes simultaneously.
+5. Verify the queue and its bindings reappear after restart.
+
+## 7. Verify Recovery
+
+- Queue depth is decreasing.
+- Consumers are connected and acknowledging messages.
+- Error rates have returned to baseline.
+- No unexpected messages landed in the DLQ.
+- Send a test message end to end.
+
+## 8. Handle Backlog
+
+Large backlogs can overwhelm consumers after recovery.
+
+- Scale consumers temporarily if needed.
+- Throttle producers if downstream systems are strained.
+- Check for duplicates if your system uses at-least-once delivery.
+
+## 9. Follow Up
+
+- Post a resolution update in the incident channel.
+- Record the timeline, root cause, and actions taken.
+- File tickets for permanent fixes, such as better poison message handling, alerting on consumer lag, or retry limits.
+- Schedule a postmortem if customer impact occurred.
+
+---
+
+## Escalation
+
+If the queue is still stuck after a broker restart, or data loss is suspected, escalate to the platform team lead immediately. Do not purge the queue without explicit approval.

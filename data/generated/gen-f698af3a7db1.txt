@@ -1,0 +1,21 @@
+# VoltHaus Recalls 42,000 Home Batteries Over Overheating Risk
+
+**Austin-based startup says it has received 31 reports of overheating, including 6 small fires; no injuries reported**
+
+AUSTIN, Texas — VoltHaus, a fast-growing home energy startup, announced Tuesday a voluntary recall of about 42,000 of its HearthCell 10 residential battery units after discovering a defect that can cause the devices to overheat and, in rare cases, catch fire.
+
+The recall covers units manufactured between March 2022 and August 2023 and sold in the United States and Canada. The company said it has received 31 reports of overheating worldwide, including six incidents in which the unit smoldered or ignited. No injuries have been reported, though two homeowners reported minor property damage to garage walls.
+
+According to VoltHaus, the problem stems from a flaw in a batch of internal wiring connectors supplied by a third-party manufacturer. Under certain conditions, such as repeated rapid charging in high ambient temperatures, the connectors can degrade and create resistance that generates excess heat.
+
+"Safety is the foundation of everything we build, and we fell short here," said Dana Okafor, VoltHaus co-founder and chief executive, in a statement. "We are contacting every affected customer directly, and we will repair or replace every unit at no cost."
+
+The HearthCell 10, which retails for about $8,900 installed, stores solar energy for use at night or during power outages. VoltHaus says it has sold roughly 60,000 units since launching in 2021, making the recall a significant share of its installed base.
+
+Customers can check whether their unit is affected by entering the serial number, found on a label on the unit's right side, at the company's recall website. VoltHaus is advising owners of affected units to switch the battery to "limited mode" through its mobile app, which caps charging speed and reduces heat buildup until a technician can complete the repair. Owners who cannot access the app are urged to call the company's dedicated hotline.
+
+The company said technicians will replace the connectors in a process that takes about two hours. Repairs are expected to begin next week, with priority given to homes where batteries are installed inside attached garages or living spaces.
+
+Industry analysts say the recall could test the young company's finances. VoltHaus raised $120 million in a funding round last year and has been preparing for a public offering. "A recall of this size is expensive, but the bigger risk is reputational," said Marcus Lindqvist, an energy storage analyst at Brightline Research. "How they handle the next few weeks will matter more than the defect itself."
+
+The U.S. Consumer Product Safety Commission is reviewing the recall, a spokesperson said.

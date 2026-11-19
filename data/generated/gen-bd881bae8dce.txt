@@ -1,0 +1,23 @@
+# Antikythera mechanism
+
+The **Antikythera mechanism** is an ancient Greek hand-powered orrery, often described as the earliest known analog computer. It was used to predict astronomical positions and eclipses decades in advance, and to track the cycles of the Greek calendar, including the timing of major Panhellenic games. The device is generally dated to the 2nd or 1st century BCE.
+
+## Discovery
+
+The mechanism was recovered in 1901 from a Roman-era shipwreck off the coast of the Greek island of Antikythera, between Kythera and Crete. Sponge divers discovered the wreck in 1900, and salvage operations led by the Greek Navy and archaeologists brought up statues, pottery, jewelry, coins, and a corroded lump of bronze. The lump was later found to contain gears and inscriptions. It is now held at the National Archaeological Museum in Athens.
+
+## Construction
+
+The device was housed in a wooden case roughly the size of a shoebox. Its bronze components, many of them thin and finely cut, survive in 82 known fragments. Turning a crank drove a system of at least 30 interlocking gears, with triangular teeth, which moved pointers across dials on the front and back of the case.
+
+The front dial showed the positions of the Sun and Moon in the zodiac, along with a calendar. The Moon's phase was displayed by a small rotating, partly silvered ball. The back featured two large spiral dials: one for the Metonic cycle (19 years, matching solar years to lunar months) and one for the Saros cycle (about 18 years, used for eclipse prediction). Smaller subsidiary dials tracked other cycles, including the Callippic cycle and the Olympiad cycle.
+
+The Moon's irregular motion, caused by its elliptical orbit, was modeled with a pin-and-slot mechanism using two gears with offset axes. This reflects the lunar theory attributed to Hipparchus.
+
+## Research
+
+Early studies by Valerios Stais and later by Derek de Solla Price in the 1950s–70s established its basic function. X-ray imaging in the 1970s, and the Antikythera Mechanism Research Project, begun in 2005, used microfocus X-ray computed tomography and surface imaging to read much of the inscriptions, which amount to a user's manual. Researchers have also proposed that the device displayed planetary positions, and reconstructions of such gearing have been published, though the evidence remains incomplete.
+
+## Significance
+
+The mechanism's sophistication has no known parallel in surviving artifacts for over a thousand years, until medieval astronomical clocks in Europe and the Islamic world. Its origin is debated, with possible links to Rhodes, Corinth, or Syracuse, and to the traditions of Hipparchus or Archimedes. It remains a striking demonstration of Hellenistic technology and astronomical knowledge.

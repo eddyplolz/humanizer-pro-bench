@@ -1,0 +1,29 @@
+# Svalbard Global Seed Vault
+
+The **Svalbard Global Seed Vault** (Norwegian: *Svalbard globale frøhvelv*) is a secure backup facility for the world's crop diversity, located on the Norwegian island of Spitsbergen in the Svalbard archipelago. It is often called the "Doomsday Vault" in the media. It stores duplicate samples of seeds held in gene banks around the world, as insurance against the loss of collections through accident, mismanagement, war, or natural disaster.
+
+## History
+
+The vault was proposed in the 1980s and gained momentum through the work of agricultural scientist Cary Fowler, who later led the Global Crop Diversity Trust (now the Crop Trust). The Norwegian government funded construction, which cost approximately NOK 50 million. The facility opened on 26 February 2008.
+
+## Location and design
+
+The vault is built into a sandstone mountain near Longyearbyen, about 1,300 kilometres from the North Pole, and sits roughly 130 metres above sea level. This elevation was chosen to keep it above any projected sea-level rise. A tunnel about 120 metres long leads to three storage chambers, each designed to hold up to 1.5 million seed samples. The total capacity is 4.5 million varieties, or about 2.25 billion seeds.
+
+The surrounding permafrost provides natural cooling, and refrigeration keeps the chambers at about −18 °C, the standard temperature for long-term seed storage. At that temperature and low moisture, the seeds of many major crops can remain viable for centuries or longer. The site was also selected for its geological stability and low level of tectonic activity.
+
+## Operation
+
+The vault is owned by the Norwegian government and managed in cooperation with the Crop Trust and the Nordic Genetic Resource Center (NordGen). Storage is free of charge, with costs covered by Norway and the Crop Trust. Depositing institutions retain ownership of their samples, which are stored in sealed foil packages in boxes that no one else may open. The vault functions only as a backup, and depositors alone may withdraw their material.
+
+By the early 2020s, the collection held more than 1.2 million samples from nearly every country, including varieties of rice, wheat, maize, barley, sorghum, and many regional crops.
+
+## Notable events
+
+In 2015, the International Center for Agricultural Research in the Dry Areas (ICARDA) made the first major withdrawal, requesting copies of seeds originally held in Aleppo, Syria, after the Syrian civil war disrupted its gene bank operations. The center used them to re-establish collections in Morocco and Lebanon.
+
+In 2017, unusually warm weather and heavy rain caused meltwater to enter the entrance tunnel. The seeds were not affected, but Norway subsequently funded substantial upgrades, including waterproofing and improved drainage.
+
+## Significance
+
+The vault is a symbol of international cooperation on food security and biodiversity conservation. It also shows how climate change can threaten even facilities built to withstand long-term risks.

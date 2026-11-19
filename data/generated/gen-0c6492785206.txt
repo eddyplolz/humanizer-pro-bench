@@ -1,0 +1,27 @@
+# Cyberattack at Riverbend Health Exposes Records of Nearly 380,000 Patients
+
+**Hospital network says names, Social Security numbers and treatment details were accessed; investigators believe attackers were inside systems for three weeks**
+
+*RIVERBEND, Ohio* — Riverbend Health, a regional network of seven hospitals and more than 40 outpatient clinics, confirmed Tuesday that attackers gained unauthorized access to its systems and may have stolen personal and medical information belonging to approximately 378,000 current and former patients.
+
+In a statement posted to its website, the network said it discovered suspicious activity on March 4 after IT staff noticed unusual data transfers from a server used to store billing records. The network said the intruders appear to have had access since mid-February.
+
+"We deeply regret this incident and the concern it causes our patients," said Dr. Elaine Marchetti, Riverbend Health's chief executive. "Protecting patient information is central to our mission, and we are taking every step to understand what happened and prevent it from happening again."
+
+According to the network, the compromised data may include names, birth dates, home addresses, Social Security numbers, insurance information, and details of diagnoses and treatments. Riverbend said it found no evidence that the attackers accessed its electronic health record system, which holds full clinical charts, though the investigation is ongoing.
+
+Emergency departments remained open during the incident, but the network confirmed that some scheduling and billing systems were taken offline for nearly a week. Several patients reported rescheduled appointments and delayed test results.
+
+"I showed up for a follow-up and they were writing everything on paper," said Dana Whitfield, 54, who receives care at a Riverbend cardiology clinic. "Now I'm worried about who has my information."
+
+Riverbend has hired an outside cybersecurity firm and notified the FBI and the U.S. Department of Health and Human Services, which maintains a public list of large healthcare breaches. The network said it has not received a ransom demand, though a ransomware group has claimed responsibility on a dark web leak site and posted what it says are sample files. Riverbend said it is reviewing those claims.
+
+Security experts say healthcare organizations remain prime targets because medical records contain a rich mix of data that can be used for identity theft and fraud.
+
+"A stolen credit card can be canceled in minutes. A Social Security number and medical history can be exploited for years," said Raymond Okafor, a health care cybersecurity consultant not involved in the investigation.
+
+Riverbend will begin mailing notification letters next week and is offering two years of free credit monitoring and identity theft protection. Patients can call a dedicated hotline at 1-800-555-0142.
+
+The network advised patients to review insurance statements for unfamiliar services and to consider placing fraud alerts on their credit files.
+
+*Note: This article is a fictional work created for illustrative purposes.*

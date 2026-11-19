@@ -1,0 +1,75 @@
+# Runbook: Restarting a Stuck Message Queue
+
+## Purpose
+This runbook describes how to safely restart a message queue service that appears stuck, unresponsive, or unable to process messages. It is intended for on-call engineers and operators responding to incidents in production or lower environments.
+
+## Symptoms
+Use this runbook if one or more of the following are observed:
+- Queue depth is increasing and not draining
+- Producers are publishing but consumers are not receiving messages
+- Queue management UI/API is unresponsive
+- High error rates, connection timeouts, or repeated retry failures
+- Queue process is running but health checks are failing
+
+## Preconditions
+Before restarting, confirm:
+- You have access to the host, container platform, or orchestration tool
+- You know the queue name, service name, and environment
+- You have checked for any active incidents involving storage, network, or dependent services
+- You understand whether the queue is clustered and whether failover is available
+
+## Safety Checks
+1. **Assess impact**
+   - Identify affected applications and users.
+   - Check whether backlog growth is critical or tolerable during restart.
+
+2. **Capture current state**
+   - Record queue depth, consumer count, producer rate, and error logs.
+   - Save screenshots or command output from monitoring dashboards.
+
+3. **Verify persistence**
+   - Confirm messages are durable or replicated if required.
+   - If the queue is non-durable, note possible message loss risk.
+
+4. **Check for root cause**
+   - Ensure the issue is not caused by full disk, memory exhaustion, expired certificates, or downstream outages. Restarting may only provide temporary relief.
+
+## Restart Procedure
+1. **Notify stakeholders**
+   - Announce intended restart in the incident channel.
+   - Include expected impact and estimated duration.
+
+2. **Pause or drain traffic if possible**
+   - Temporarily stop producers or consumers if your platform supports it.
+   - In clustered setups, redirect traffic to healthy nodes first.
+
+3. **Restart the service**
+   - For systemd-based hosts: `sudo systemctl restart <service-name>`
+   - For containers: restart the pod/task/container via the orchestrator
+   - For clustered brokers: restart only the affected node unless a broader action is approved
+
+4. **Monitor startup**
+   - Watch service logs for successful initialization.
+   - Confirm health checks pass and management endpoints respond.
+
+## Validation
+After restart, confirm:
+- Queue service is healthy
+- Queue depth is stable or decreasing
+- Consumers reconnect successfully
+- Producers can publish without error
+- No unusual spikes in latency, retries, or dead-letter messages
+
+## Rollback / Escalation
+Escalate immediately if:
+- Service fails to start
+- Queue depth continues to grow after restart
+- Messages appear lost or corrupted
+- Multiple nodes show the same issue
+
+If restart does not resolve the issue, engage the messaging/platform team and attach logs, metrics, timestamps, and actions taken.
+
+## Post-Incident
+- Document timeline, cause, and recovery steps
+- Create follow-up tasks for root cause analysis
+- Review whether alerts, dashboards, or autoscaling thresholds need adjustment

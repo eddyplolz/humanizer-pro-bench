@@ -1,0 +1,96 @@
+# Plugin System Documentation
+
+## Overview
+
+The editor's plugin system lets you extend functionality without modifying the core application. Plugins are written in JavaScript and run in an isolated sandbox, communicating with the editor through a controlled API.
+
+## Installing Plugins
+
+Place plugin folders in your user plugin directory:
+
+- **Windows:** `%APPDATA%\Editor\plugins`
+- **macOS/Linux:** `~/.config/editor/plugins`
+
+Alternatively, open the command palette (`Ctrl+Shift+P`) and run **Plugins: Install from Registry**. Restart the editor or run **Plugins: Reload All** to activate new plugins.
+
+## Plugin Structure
+
+Each plugin requires a folder containing at least two files:
+
+```
+my-plugin/
+├── manifest.json
+└── index.js
+```
+
+### manifest.json
+
+The manifest describes your plugin:
+
+```json
+{
+  "name": "word-counter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "permissions": ["editor.read", "ui.statusbar"],
+  "activationEvents": ["onStartup"]
+}
+```
+
+| Field | Description |
+|-------|-------------|
+| `name` | Unique identifier, lowercase with hyphens |
+| `version` | Semantic version string |
+| `main` | Entry point file |
+| `permissions` | APIs the plugin may access |
+| `activationEvents` | When the plugin loads |
+
+## Writing a Plugin
+
+Your entry file must export an `activate` function. Export `deactivate` if cleanup is needed.
+
+```javascript
+exports.activate = function (editor) {
+  const item = editor.ui.createStatusItem();
+
+  editor.on("textChanged", () => {
+    const text = editor.document.getText();
+    item.setText(`Words: ${text.split(/\s+/).length}`);
+  });
+};
+
+exports.deactivate = function () {
+  // Release resources here
+};
+```
+
+## Core API
+
+- **`editor.document`**: Read and modify the active file (`getText()`, `insert()`, `replace()`)
+- **`editor.commands`**: Register commands with `registerCommand(id, handler)`
+- **`editor.ui`**: Create status items, menus, and panels
+- **`editor.on(event, callback)`**: Subscribe to events such as `textChanged`, `fileSaved`, and `selectionChanged`
+- **`editor.settings`**: Read user configuration values
+
+## Permissions
+
+Plugins can only use APIs declared in their manifest. Common permissions include:
+
+- `editor.read`: Read document contents
+- `editor.write`: Modify documents
+- `ui.statusbar`: Add status bar items
+- `fs.read`: Read files in the workspace
+- `network`: Make external requests
+
+Users are prompted to approve permissions on first install.
+
+## Debugging
+
+Open **Help → Toggle Plugin Console** to view logs from `console.log` and uncaught errors. Use **Plugins: Reload All** after making changes to see updates immediately.
+
+## Best Practices
+
+1. Request only the permissions you need.
+2. Use specific activation events instead of `onStartup` to keep launch times fast.
+3. Dispose of event listeners in `deactivate`.
+4. Avoid blocking operations; use asynchronous calls for file and network access.

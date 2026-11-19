@@ -1,0 +1,2044 @@
+{
+  "entries": [
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-033363e10604",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "news",
+      "sha256": "033363e106043b20d0a0520a768beb49f32457ff5c1233064312f06841cc4cc3",
+      "source": {
+        "prompt_id": "news-11",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "dev",
+      "words": 440
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-04cd7fdbd6c7",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "docs",
+      "sha256": "04cd7fdbd6c7e2cca92f9059d37893cf3ce15f19d4e6f81393a59776f96e7361",
+      "source": {
+        "prompt_id": "docs-06",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "dev",
+      "words": 455
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-063b2cdd028c",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "wiki",
+      "sha256": "063b2cdd028c9d285f11c504e7ec70a02d215e2ecfbc38985b4c2616903a38e1",
+      "source": {
+        "prompt_id": "wiki-17",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "dev",
+      "words": 419
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-077bd0e567b8",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "docs",
+      "sha256": "077bd0e567b8b063eab81f0de876ef135b6053ef048627cd83f33edd69e1036f",
+      "source": {
+        "prompt_id": "docs-10",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "dev",
+      "words": 405
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-07a58d94823d",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "news",
+      "sha256": "07a58d94823d13551e225207353be40b129b538a05eb05b0a9d18d75c9890086",
+      "source": {
+        "prompt_id": "news-10",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "dev",
+      "words": 447
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-07c673a60235",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "news",
+      "sha256": "07c673a6023545849a07ced6b9e7033dd7406d40fa0e2e993da96b242b2b8f6d",
+      "source": {
+        "prompt_id": "news-04",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "dev",
+      "words": 467
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-07f37efb595e",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "essay",
+      "sha256": "07f37efb595e99243ec62ccc4bca1cf015228c6abf7876a6e1431b65a3d7a7f1",
+      "source": {
+        "prompt_id": "essay-09",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "dev",
+      "words": 530
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-0aa1279b35f2",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "essay",
+      "sha256": "0aa1279b35f2f5a31094d29fc533b4f1ddb48f0cbcedd302c7ff94b697a72b62",
+      "source": {
+        "prompt_id": "essay-10",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "dev",
+      "words": 545
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-0c6492785206",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "news",
+      "sha256": "0c6492785206685d8f2b3e97f80883449cb56f3f744e2432f27311140db68473",
+      "source": {
+        "prompt_id": "news-09",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "dev",
+      "words": 468
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-0eac5253301c",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "docs",
+      "sha256": "0eac5253301c581a78a5bd4c99ee789cb3a89095b4eb976df99d24c63363332a",
+      "source": {
+        "prompt_id": "docs-09",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "dev",
+      "words": 370
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-12d8f571a23e",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "wiki",
+      "sha256": "12d8f571a23e32e8b1aaf541dc8ac7b8e12ac1744ad5d3a6ed3b9968f8384996",
+      "source": {
+        "prompt_id": "wiki-10",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "dev",
+      "words": 421
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-1316d09fd5cd",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "wiki",
+      "sha256": "1316d09fd5cd98e4194f863ed29539bb7e6928a28cdf8e179b21201460ec4266",
+      "source": {
+        "prompt_id": "wiki-11",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "dev",
+      "words": 425
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-14c9a8530e6a",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "docs",
+      "sha256": "14c9a8530e6af4e0e2878b7f8024c44f5ee5742906eb4c7506ce68a433b3e055",
+      "source": {
+        "prompt_id": "docs-04",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "dev",
+      "words": 479
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-19d0c284d095",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "essay",
+      "sha256": "19d0c284d095071d4ebb93611f88fe2de54e48cecee137ca1ed2b14b52c6d745",
+      "source": {
+        "prompt_id": "essay-11",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "dev",
+      "words": 542
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-1baf7ccc7633",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "docs",
+      "sha256": "1baf7ccc76335c47329cad00812dd182c32ed043f1561c8baa32d2f8869becc0",
+      "source": {
+        "prompt_id": "docs-12",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "dev",
+      "words": 439
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-1d8ac80212ae",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "news",
+      "sha256": "1d8ac80212aea4420325e494cbc9736c299b5bdca7df9a064486e33da2e6729e",
+      "source": {
+        "prompt_id": "news-12",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "dev",
+      "words": 456
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-2215b75aa505",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "essay",
+      "sha256": "2215b75aa505f54584e9bca396bcbc4a6f318d0a1a785f6521ff14bd12fe774c",
+      "source": {
+        "prompt_id": "essay-09",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "dev",
+      "words": 540
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-22e95e8436e1",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "wiki",
+      "sha256": "22e95e8436e1c76a2567a5e1e5f6c2340ff76e82d3a746b066190f8f5276ce49",
+      "source": {
+        "prompt_id": "wiki-11",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "dev",
+      "words": 444
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-245d97b0d280",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "news",
+      "sha256": "245d97b0d2800105cc9007f463500efd1f8066d5f368812083ca2ae5909cd167",
+      "source": {
+        "prompt_id": "news-08",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "dev",
+      "words": 450
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-24d97eb76954",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "news",
+      "sha256": "24d97eb769544b465c56bfdae29c3fa002cbded45235928e7dd9094c5d040a85",
+      "source": {
+        "prompt_id": "news-13",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "dev",
+      "words": 446
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-255a76cbfc34",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "news",
+      "sha256": "255a76cbfc34070ce109f21cbb258b622d507b6f433b3f40b99db0fba87745dc",
+      "source": {
+        "prompt_id": "news-01",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "dev",
+      "words": 465
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-26bad35fcd67",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "news",
+      "sha256": "26bad35fcd679bb143a845a51d096143a612e93e8c9b1029cd4c7e0bb1ec97e8",
+      "source": {
+        "prompt_id": "news-06",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "dev",
+      "words": 478
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-2859de67e7d6",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "essay",
+      "sha256": "2859de67e7d68f6bcc6d4bac4f89ed1ae7fda8ba1b4a54500007c9fa669dc11a",
+      "source": {
+        "prompt_id": "essay-05",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "dev",
+      "words": 514
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-29952ee94d53",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "wiki",
+      "sha256": "29952ee94d5383f68dcd011068288cc92b317573dd1adb191c871e19bdd860eb",
+      "source": {
+        "prompt_id": "wiki-02",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "dev",
+      "words": 439
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-2aed3a0c3acf",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "docs",
+      "sha256": "2aed3a0c3acf5f67042da73781e0f82776f648ca636c290d177a5bcad70c8cce",
+      "source": {
+        "prompt_id": "docs-13",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "dev",
+      "words": 434
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-2b1c2d88c338",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "news",
+      "sha256": "2b1c2d88c338222f8aa49219386b1edadb6a68d0197ba86f408277c7ca77f8f9",
+      "source": {
+        "prompt_id": "news-12",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "dev",
+      "words": 456
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-2b648e714258",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "wiki",
+      "sha256": "2b648e714258c6f1c63fd4ed99e738aefd10da165b39515a6e08e1d26974f08c",
+      "source": {
+        "prompt_id": "wiki-05",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "dev",
+      "words": 469
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-2bdf3e83eca9",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "news",
+      "sha256": "2bdf3e83eca934a926eabd60d6c4a2c935f38c4613a4bbb97ff322646beaae32",
+      "source": {
+        "prompt_id": "news-10",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "dev",
+      "words": 450
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-30b3b36b8dcd",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "news",
+      "sha256": "30b3b36b8dcde52d4ca18e78854cb838757c3bb09d6211a0689392c8e60d6c03",
+      "source": {
+        "prompt_id": "news-07",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "dev",
+      "words": 429
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-30e98da91d2a",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "wiki",
+      "sha256": "30e98da91d2a73b2a4a9047c9c3d9017bd7077697e36973df132a82ea42a1db7",
+      "source": {
+        "prompt_id": "wiki-07",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "dev",
+      "words": 439
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-34c6d3d11f77",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "docs",
+      "sha256": "34c6d3d11f779c1bd75ca8d0578403a7bcec4f0014dcbb5d958114b3fb12105a",
+      "source": {
+        "prompt_id": "docs-08",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "dev",
+      "words": 482
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-364cea5dc89d",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "wiki",
+      "sha256": "364cea5dc89de92b73d25231eae52f0b7c3bb0dae330c4ae5467362206695dfa",
+      "source": {
+        "prompt_id": "wiki-05",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "dev",
+      "words": 417
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-36a8a3cf0ba7",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "essay",
+      "sha256": "36a8a3cf0ba72071401163e64999c9cdd5c63f32e671e03255ae794b8f96fe8b",
+      "source": {
+        "prompt_id": "essay-06",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "dev",
+      "words": 499
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-36f0dfbd4b48",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "wiki",
+      "sha256": "36f0dfbd4b48a75b24a727b44bc54b3fa9d469a61a60fdde5032ef9dc6146e86",
+      "source": {
+        "prompt_id": "wiki-16",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "dev",
+      "words": 428
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-38b1a6a8c443",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "docs",
+      "sha256": "38b1a6a8c44313911b07af81b7ab99cbb97b9eb28e9cd92a07dcf2a266540e87",
+      "source": {
+        "prompt_id": "docs-04",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "dev",
+      "words": 416
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-3c0593a30101",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "essay",
+      "sha256": "3c0593a30101130e611f5e9e13663b57c8878f4398dd62aeca7b426763dcb3e0",
+      "source": {
+        "prompt_id": "essay-14",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "dev",
+      "words": 623
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-3e68842bdd72",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "news",
+      "sha256": "3e68842bdd72dc59e28d86deee2cdea61ccfb3201d8a41dc910a5396b862baeb",
+      "source": {
+        "prompt_id": "news-13",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "dev",
+      "words": 437
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-3ed62ace98fc",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "docs",
+      "sha256": "3ed62ace98fc25f5d9b17376ef9f2ba56b8bebfb49add61c3992343e9048fa2d",
+      "source": {
+        "prompt_id": "docs-12",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "dev",
+      "words": 370
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-3fd2c88ddaf2",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "docs",
+      "sha256": "3fd2c88ddaf28e04724c0d76e314a9829533d91eda90f117436b4b751439dea3",
+      "source": {
+        "prompt_id": "docs-07",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "dev",
+      "words": 450
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-3ff98d67ae0e",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "wiki",
+      "sha256": "3ff98d67ae0ef99cf326531afee070501e78c17f1b07e7ffc8222d967f23eef8",
+      "source": {
+        "prompt_id": "wiki-03",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "dev",
+      "words": 415
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-40bdb117026c",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "news",
+      "sha256": "40bdb117026c61b3179eb19de51fb211997a144b3d23c5ebd47202ba266bdfee",
+      "source": {
+        "prompt_id": "news-03",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "test",
+      "words": 468
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-4107943f345a",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "wiki",
+      "sha256": "4107943f345a86d6509b2fd09363cc2f05cb75ca69505968eac2c113ae959f25",
+      "source": {
+        "prompt_id": "wiki-18",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 472
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-410aa935f06a",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "docs",
+      "sha256": "410aa935f06a30df188401757279db06682e4efe1b6a9ffe90ce25662fc9c754",
+      "source": {
+        "prompt_id": "docs-13",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 374
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-4462b585c579",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "essay",
+      "sha256": "4462b585c579fdee8c8219b5481134334681b109a1bf17c98de97ba0ad8035b8",
+      "source": {
+        "prompt_id": "essay-13",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "test",
+      "words": 568
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-47298df47a4f",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "essay",
+      "sha256": "47298df47a4f61adfeafc1b073f7041dc4c03baa1e5ac7bde5be097da832022a",
+      "source": {
+        "prompt_id": "essay-13",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 508
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-494c3f94aea6",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "docs",
+      "sha256": "494c3f94aea60123ad8b72812f0efdb2b0dc8c9efa3e60b1f989d95447a5b1db",
+      "source": {
+        "prompt_id": "docs-11",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 484
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-4afdfdff0bff",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "news",
+      "sha256": "4afdfdff0bffca9689df166e7d55671368ea2973223769cb5c4b2fdecba7abed",
+      "source": {
+        "prompt_id": "news-05",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 439
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-4c46932e2e88",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "docs",
+      "sha256": "4c46932e2e88ea5dd4e15f628ef4e74a3041572e8a8a455a85f89f52ba4c9db5",
+      "source": {
+        "prompt_id": "docs-01",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 328
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-4d8ec181a00b",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "wiki",
+      "sha256": "4d8ec181a00bd3da36951cbee1d0c83e47b2e9adbc4d34244a7c09ff09d4ec64",
+      "source": {
+        "prompt_id": "wiki-04",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 446
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-4efbb8d90cf1",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "wiki",
+      "sha256": "4efbb8d90cf129ec3a7d8f269cc072d8915fdedf2e05ee87ceb6ac2a8aa1a763",
+      "source": {
+        "prompt_id": "wiki-10",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 446
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-4fc7f4fad294",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "wiki",
+      "sha256": "4fc7f4fad2944116da959c3d0da061e435613e89883166215cef45aa6a3b5870",
+      "source": {
+        "prompt_id": "wiki-14",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 472
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-539224082ce4",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "docs",
+      "sha256": "539224082ce45016b9d459d28b64a58e46f290054c9143a251df91dbab30c71a",
+      "source": {
+        "prompt_id": "docs-02",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "test",
+      "words": 407
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-58bd0ecc1eb8",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "news",
+      "sha256": "58bd0ecc1eb85bd32069f295f4d39d3132e3074a6c744dc70aa0bc0d7d530012",
+      "source": {
+        "prompt_id": "news-11",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "test",
+      "words": 475
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-58cb730fd02c",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "wiki",
+      "sha256": "58cb730fd02c20a3df23b09e4b7e9056a9c82253a014a3eb92c6627b711998cb",
+      "source": {
+        "prompt_id": "wiki-14",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "test",
+      "words": 429
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-5e73477392c6",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "docs",
+      "sha256": "5e73477392c6d5330564e25da5174a195780628d538a0c712a93d781776de709",
+      "source": {
+        "prompt_id": "docs-06",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "test",
+      "words": 487
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-5ec953397720",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "wiki",
+      "sha256": "5ec9533977209a411107c4da5f033d21b2a04138f1f5426170ebb98ce18e357f",
+      "source": {
+        "prompt_id": "wiki-01",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "test",
+      "words": 420
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-5f7c7ad3ced8",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "essay",
+      "sha256": "5f7c7ad3ced8c6791105256d15262f70fb9ebf0ed1fbd10e10465f0a4dd1aa16",
+      "source": {
+        "prompt_id": "essay-06",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "test",
+      "words": 541
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-61e8e72e3c98",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "wiki",
+      "sha256": "61e8e72e3c98194e8ff05b0a7a7becae385856ef285e7b3b9ae835a076dbec0c",
+      "source": {
+        "prompt_id": "wiki-17",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 408
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-622f6cd41e31",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "essay",
+      "sha256": "622f6cd41e31b8e86869a47ec2a9e18e9592159631309836ecdafd7f6a9767ca",
+      "source": {
+        "prompt_id": "essay-08",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "test",
+      "words": 530
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-6305e71a9a2e",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "news",
+      "sha256": "6305e71a9a2e66bf18df853d2f1b6977942c27266c369342e19269deb42ab182",
+      "source": {
+        "prompt_id": "news-01",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 435
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-63b3f882a38f",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "docs",
+      "sha256": "63b3f882a38fd86e5192cb475333bc39003fdc258b778467beef20c0a6552479",
+      "source": {
+        "prompt_id": "docs-01",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "test",
+      "words": 436
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-66575bb1a6c6",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "wiki",
+      "sha256": "66575bb1a6c60defb3960458c863265199d60cacd47f8c5e50b8af3566277337",
+      "source": {
+        "prompt_id": "wiki-15",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "test",
+      "words": 426
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-684a65d9b2e8",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "essay",
+      "sha256": "684a65d9b2e85fe89b7860c53c7bdb2a71ef3e3301c2015fb947ddf21ede7810",
+      "source": {
+        "prompt_id": "essay-10",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "test",
+      "words": 570
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-6b4ea4f0728b",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "wiki",
+      "sha256": "6b4ea4f0728b608fb347db5017ae87f7a5293df2a7d984fa4f3996b7239e70fd",
+      "source": {
+        "prompt_id": "wiki-12",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 468
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-6c1b0ab195fd",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "docs",
+      "sha256": "6c1b0ab195fdc09f11766fe3be012d4ec95b8df269e26bbe10c5244f340e716a",
+      "source": {
+        "prompt_id": "docs-09",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 379
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-6dd2da856c69",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "wiki",
+      "sha256": "6dd2da856c690d4a89f64c088859dd8f196d764d9e605641dc28c524166860c6",
+      "source": {
+        "prompt_id": "wiki-08",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 463
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-6eb22011ee82",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "docs",
+      "sha256": "6eb22011ee82351b092ef9168b419480c608ab7c284f6cb03d535bb62767392f",
+      "source": {
+        "prompt_id": "docs-07",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 469
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-6ffae181843c",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "essay",
+      "sha256": "6ffae181843c1f5e474860280a08d29e6cf270fb0aa04b78910be1e670b84819",
+      "source": {
+        "prompt_id": "essay-01",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 535
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-71adbf69a234",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "news",
+      "sha256": "71adbf69a234665ea63db9c85cf2f1ed77f33e223ee019a37fdcc7b36452b2d9",
+      "source": {
+        "prompt_id": "news-14",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "test",
+      "words": 467
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-74999c42fa9c",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "news",
+      "sha256": "74999c42fa9c302e503d5ca70123b9ede16bb2038488fe60e07480b98e332cf1",
+      "source": {
+        "prompt_id": "news-02",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 428
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-74e1253d9528",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "wiki",
+      "sha256": "74e1253d95287377dd3f8a75d45c7bb447ee3fe178bce4bf714b432bd327c9ab",
+      "source": {
+        "prompt_id": "wiki-07",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 421
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-7574f5f573f3",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "news",
+      "sha256": "7574f5f573f307362349bbb1a67b11d0b5200a04321d438d3728975ca906389e",
+      "source": {
+        "prompt_id": "news-05",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "test",
+      "words": 457
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-7a81830db6c1",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "essay",
+      "sha256": "7a81830db6c1e70e9018c2321e056ecff3e04927930c8b8ae5cb7a1cad8f6fcb",
+      "source": {
+        "prompt_id": "essay-11",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 538
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-7b082ac6427c",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "docs",
+      "sha256": "7b082ac6427c0afc1f85aef440f7da244bf21da15ed5f173c2143d2981ef1c18",
+      "source": {
+        "prompt_id": "docs-05",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 457
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-7cb92d930bc6",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "essay",
+      "sha256": "7cb92d930bc6a322d721d78c96ec146e9976a4d1c16f7107097e691e36a5e2dd",
+      "source": {
+        "prompt_id": "essay-04",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 554
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-7ff0b679c302",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "wiki",
+      "sha256": "7ff0b679c3024924ae5e42e1dfa874a12eb83088913b1e6c74c57489b2542d5c",
+      "source": {
+        "prompt_id": "wiki-01",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 462
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-80667983f124",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "essay",
+      "sha256": "80667983f124273c8a91ed702843fb0960198af797ed9967ee2bde81008faa19",
+      "source": {
+        "prompt_id": "essay-03",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "test",
+      "words": 537
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-828f914a2961",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "essay",
+      "sha256": "828f914a2961cb50d28f4a82aaa29436089ee417938e9b448e2a1b702725cfaf",
+      "source": {
+        "prompt_id": "essay-04",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "test",
+      "words": 594
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-82fcdc0d1780",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "wiki",
+      "sha256": "82fcdc0d1780f13e0a5762bd93d2e30af20799dbc29df1f3cd2f187778834226",
+      "source": {
+        "prompt_id": "wiki-06",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "test",
+      "words": 452
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-86427def4e22",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "essay",
+      "sha256": "86427def4e22001f8e2c988f4b33491cf47873902b4049797ea7d1f79a28fb01",
+      "source": {
+        "prompt_id": "essay-02",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 526
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-866121074aa9",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "docs",
+      "sha256": "866121074aa9a2a06d32c51d66fc0f53c3160e7ffba3dcc786b6317ca72cdef8",
+      "source": {
+        "prompt_id": "docs-08",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 473
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-8a6e776f282b",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "news",
+      "sha256": "8a6e776f282b8cbb81a09bf91c945b8cfa845513d861a0a3d46e8eef0f09279d",
+      "source": {
+        "prompt_id": "news-04",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "test",
+      "words": 459
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-8c6212c046b1",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "docs",
+      "sha256": "8c6212c046b1f11f87cc24eb7a3b041e091e04f70784b148a5f475c906360510",
+      "source": {
+        "prompt_id": "docs-14",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "test",
+      "words": 453
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-8c66b987020d",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "wiki",
+      "sha256": "8c66b987020d4f9dcc9d880d1c67388be93ceefe1b6cc5e6fef1e26c489913de",
+      "source": {
+        "prompt_id": "wiki-09",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "test",
+      "words": 462
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-8f14c8971398",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "docs",
+      "sha256": "8f14c8971398653ab4b1d004e401c7fcef858d8650d3c1ab1f2519c7d6f346e5",
+      "source": {
+        "prompt_id": "docs-02",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 365
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-91817e110459",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "news",
+      "sha256": "91817e110459f160ff8751b6d069042dae763bd1f6ae0e17e2924e8e0b8cb6e4",
+      "source": {
+        "prompt_id": "news-09",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "test",
+      "words": 458
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-9329385c1698",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "docs",
+      "sha256": "9329385c1698eb7ab785f0be29324deb9407c20ca15090d0e8e80a6d1bbda034",
+      "source": {
+        "prompt_id": "docs-03",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "test",
+      "words": 459
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-966575eb6fd9",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "essay",
+      "sha256": "966575eb6fd99f47f836f28f469738ccefeb40b1b3e8579c7430d3f83241625c",
+      "source": {
+        "prompt_id": "essay-07",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 532
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-99841b1420f0",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "docs",
+      "sha256": "99841b1420f0b8e60c841c8d614c52f67cd9b4b8bb626301d8b713e27477ffde",
+      "source": {
+        "prompt_id": "docs-11",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "test",
+      "words": 469
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-9b7465750a99",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "essay",
+      "sha256": "9b7465750a99652791911f59885d7a3d9c0a0f0415a15139886e36db222d9de4",
+      "source": {
+        "prompt_id": "essay-08",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 515
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-9dc50614add9",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "news",
+      "sha256": "9dc50614add9230d20de6da1bda9fc0e3021da047be85feb30760d63b5383b43",
+      "source": {
+        "prompt_id": "news-08",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 443
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-a39168d537e4",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "wiki",
+      "sha256": "a39168d537e40595bfa92c26ef904e149d5d5bf023c25d3da50e6fd88e7d49d7",
+      "source": {
+        "prompt_id": "wiki-02",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 457
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-a57015fca862",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "essay",
+      "sha256": "a57015fca8628aea518894812f097e45de941785697f4fc7a2cc677fc7773426",
+      "source": {
+        "prompt_id": "essay-01",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "test",
+      "words": 552
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-abc7c97b819b",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "docs",
+      "sha256": "abc7c97b819bf3fcbb21e0221a7203444233fd5664b20ba285afbc0e6e36bb1a",
+      "source": {
+        "prompt_id": "docs-03",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 459
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-b11d2c37e119",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "docs",
+      "sha256": "b11d2c37e1190a03d1a1560d38f161c216d9f2080d2890230a108a2fbffad341",
+      "source": {
+        "prompt_id": "docs-14",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 466
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-b5c7e5df08ac",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "essay",
+      "sha256": "b5c7e5df08ac787d2a54a4c4a0ce8a189304607823330d9b476d3d36291aa85d",
+      "source": {
+        "prompt_id": "essay-14",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 528
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-b7f42f84999a",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "docs",
+      "sha256": "b7f42f84999adc67b61b96a1ca73e030486574ff9e435846c12390bf7a3e0a05",
+      "source": {
+        "prompt_id": "docs-05",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "test",
+      "words": 419
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-b822d0b84a45",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "essay",
+      "sha256": "b822d0b84a45855ee4f97a95b3d3c294d6640b10a2ced8ef475a0fb8c38f5fd0",
+      "source": {
+        "prompt_id": "essay-05",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "test",
+      "words": 505
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-b93eb9f70b30",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "essay",
+      "sha256": "b93eb9f70b30d4ea443ab3dc97e9ffba1072ae75d4019b530919a9e7df52e1d5",
+      "source": {
+        "prompt_id": "essay-02",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "test",
+      "words": 540
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-ba4fec99a654",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "wiki",
+      "sha256": "ba4fec99a654b3c5b57564c9d8b3e03d4a7574788edf3f58a813d85b55aeb709",
+      "source": {
+        "prompt_id": "wiki-04",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "test",
+      "words": 407
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-bc99a200345c",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "news",
+      "sha256": "bc99a200345cb65e9a23ddcb388f8b2e03be8aa13088654f195e838f82539137",
+      "source": {
+        "prompt_id": "news-02",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "test",
+      "words": 461
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-bcfc632e15e1",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "essay",
+      "sha256": "bcfc632e15e1a8029d028f499b0fb8ae93d2dad21699f4cb66f0059514063d77",
+      "source": {
+        "prompt_id": "essay-12",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 533
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-bd881bae8dce",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "wiki",
+      "sha256": "bd881bae8dce362d4ad4597da930628045e72cd47f2748a79c3bc6e6df4600f3",
+      "source": {
+        "prompt_id": "wiki-03",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 432
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-c5898d47640a",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "wiki",
+      "sha256": "c5898d47640a0113098c30eacf79b7302c9954ef32f2abbc39a7c68cffaf22aa",
+      "source": {
+        "prompt_id": "wiki-15",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 431
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-cb9400bcedd5",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "wiki",
+      "sha256": "cb9400bcedd58b83f8574d8858e27e0c8462ef1992df77417767cb694556edf1",
+      "source": {
+        "prompt_id": "wiki-08",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "test",
+      "words": 427
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-cf3859d0427d",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "essay",
+      "sha256": "cf3859d0427d31e9b15176761272d7335d0662f6b4aac7aea2583311453f9311",
+      "source": {
+        "prompt_id": "essay-12",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "test",
+      "words": 516
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-d4f6b4094541",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "wiki",
+      "sha256": "d4f6b4094541e868bde850d8c3ee5bc2eea65593261cc649f4feaaa57ccab166",
+      "source": {
+        "prompt_id": "wiki-13",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "test",
+      "words": 431
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-d5c63defe176",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "wiki",
+      "sha256": "d5c63defe176f32a59bdc73ae50bc5d5d2e9cbdae3e6743c8d62727ab868f13d",
+      "source": {
+        "prompt_id": "wiki-18",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "test",
+      "words": 438
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-db44e2695583",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "essay",
+      "sha256": "db44e26955831e8975116267eda12365297996d691e92490f1cdd2c58f6df782",
+      "source": {
+        "prompt_id": "essay-07",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "test",
+      "words": 609
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-df4b92f7c100",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "essay",
+      "sha256": "df4b92f7c1003da4905c2f1405b1b4df2823939aab2286ebcf3bb3c0d588be29",
+      "source": {
+        "prompt_id": "essay-03",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 512
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-e0a2bcac243c",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "docs",
+      "sha256": "e0a2bcac243cbf7d483e2227877a934432b213d63e7dbd5cc82efdf2e3849dc6",
+      "source": {
+        "prompt_id": "docs-10",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 410
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-e1e4f0251333",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "wiki",
+      "sha256": "e1e4f025133316d4da42aaf35cf29d3e93e1f1978e1b296dca7265cc73c7d6b6",
+      "source": {
+        "prompt_id": "wiki-12",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "test",
+      "words": 420
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-e57a9719def8",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "wiki",
+      "sha256": "e57a9719def8cd44ee48538e531c56be9eb16d6da0349ba068a744565aabb7eb",
+      "source": {
+        "prompt_id": "wiki-09",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 440
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-ec702586d136",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "news",
+      "sha256": "ec702586d136927c57c92e23d08f7532b9e7f50b1a385ad1b3506f3d978c896f",
+      "source": {
+        "prompt_id": "news-06",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 447
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-f0ce6bf0b4e0",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "wiki",
+      "sha256": "f0ce6bf0b4e0ccc877e1ba70bd79916ec931523c1a1592e5fe923896f282c6e7",
+      "source": {
+        "prompt_id": "wiki-16",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 450
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-f2b7254ddd00",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "wiki",
+      "sha256": "f2b7254ddd00a043e90cd03c3689f6ccd5fe935b5c5e180aa9b19122b2139692",
+      "source": {
+        "prompt_id": "wiki-06",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 469
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-f698af3a7db1",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "news",
+      "sha256": "f698af3a7db1c12f58130e103e31d1d7d257fbcf5c5d5fe78325b21571fbc783",
+      "source": {
+        "prompt_id": "news-14",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 444
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-f9cc3809c27b",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "news",
+      "sha256": "f9cc3809c27b54bc23952ae6842fc7f6e7e8cbcabe29a4d551b924aafca5c48d",
+      "source": {
+        "prompt_id": "news-03",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 446
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-fc1e9af287f2",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:anthropic/claude-sonnet-5.5",
+      "register": "wiki",
+      "sha256": "fc1e9af287f232440ff3fefaebc1df37234db7b11e6804f58356595dc89849bc",
+      "source": {
+        "prompt_id": "wiki-13",
+        "requested_model": "anthropic/claude-sonnet-5.5"
+      },
+      "split": "test",
+      "words": 414
+    },
+    {
+      "author": "machine",
+      "date": "2026-11",
+      "extraction": "generated.v1",
+      "id": "gen-fd760c7bba8a",
+      "kind": "generated",
+      "label": "machine",
+      "model": "openrouter:openai/gpt-5.4",
+      "register": "news",
+      "sha256": "fd760c7bba8a55b53ff548f63209d80b179e212717800ee247f5355047f6387b",
+      "source": {
+        "prompt_id": "news-07",
+        "requested_model": "openai/gpt-5.4"
+      },
+      "split": "test",
+      "words": 446
+    }
+  ]
+}

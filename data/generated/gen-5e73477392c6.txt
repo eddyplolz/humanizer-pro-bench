@@ -1,0 +1,61 @@
+## Home Wi‑Fi Mesh Troubleshooting Guide
+
+A Wi‑Fi mesh system uses multiple nodes to spread wireless coverage throughout your home. If your internet feels slow, devices keep disconnecting, or some rooms have weak signal, use this checklist to diagnose and fix the problem.
+
+### 1. Check the Basics
+Start with the simplest issues:
+- Make sure your modem and main mesh router are powered on.
+- Confirm all mesh nodes have power and show a normal status light.
+- Verify your internet service is working by connecting a device directly to the modem, if possible.
+- Restart the whole system: modem first, then the main router, then the mesh nodes.
+
+A full reboot often clears temporary connection problems.
+
+### 2. Confirm Node Placement
+Mesh nodes need good spacing to work well.
+- Place the main router in a central, open location.
+- Keep nodes halfway between the main router and weak-signal areas.
+- Avoid placing nodes inside cabinets, behind TVs, or near thick walls, metal objects, microwaves, or cordless phones.
+- If a node is too far away, it may connect poorly and reduce overall performance.
+
+A node should receive a strong signal from the previous node before extending coverage farther.
+
+### 3. Check for Overcrowding
+Too many connected devices can slow the network, especially if several are streaming, gaming, or downloading large files at once.
+- Disconnect unused devices.
+- Pause heavy downloads and test performance again.
+- If your mesh app supports it, identify bandwidth-hungry devices.
+
+Some systems also let you prioritize traffic for work calls or gaming.
+
+### 4. Update Firmware
+Outdated firmware can cause instability, speed issues, and security risks.
+- Open the mesh system’s app or web portal.
+- Check for firmware updates on the main router and all nodes.
+- Install updates and allow the system to restart fully.
+
+Enable automatic updates if available.
+
+### 5. Test Speed in the Right Place
+Run a speed test:
+- Near the main router
+- Near each mesh node
+- In the room where performance is poor
+
+If speed is good at the main router but bad near a node, the issue is usually node placement or interference.
+
+### 6. Reduce Wireless Interference
+Wi‑Fi performance drops when nearby devices compete for signal.
+- Move nodes away from baby monitors, Bluetooth hubs, cordless phone bases, and microwave ovens.
+- Use the 5 GHz band for speed when close to a node.
+- Use 2.4 GHz for longer range or older devices.
+
+Many mesh systems choose bands automatically, but placement still matters.
+
+### 7. Reset as a Last Resort
+If a node won’t connect or settings seem corrupted:
+- Remove the node from the app
+- Factory reset it using the reset button
+- Add it back to the mesh network
+
+If problems continue after all steps, contact your internet provider or the mesh system’s support team. Have your model number, firmware version, and a description of the issue ready.

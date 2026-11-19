@@ -1,0 +1,50 @@
+# Bike-Share FAQ
+
+## Getting Started
+
+**How do I rent a bike?**
+Download our app and create an account. Then find a nearby station, tap "Unlock," and scan the QR code on the bike. You can also unlock bikes at station kiosks using a credit card.
+
+**How much does it cost?**
+- **Single ride:** $1 to unlock, plus $0.15 per minute
+- **Day pass:** $12, with unlimited 30-minute rides for 24 hours
+- **Monthly membership:** $20, with unlimited 45-minute rides
+- **Annual membership:** $150, with unlimited 45-minute rides
+
+Discounted memberships are available for students, seniors, and low-income residents. Visit our website to apply.
+
+## Using the Service
+
+**How long can I keep a bike?**
+Ride as long as you like, but time beyond your plan's included minutes is billed at $0.15 per minute. For longer trips, dock the bike and check out another to reset your time.
+
+**Where can I return my bike?**
+Return it to any station with an open dock. Push the front wheel firmly into the dock until the light turns green. If a station is full, use the app to find the nearest one with space, and you'll receive a free 10-minute extension.
+
+**Do I need to bring a helmet?**
+Helmets aren't provided, but we strongly recommend wearing one. Riders under 16 are required by law to wear a helmet.
+
+**Are electric bikes available?**
+Yes. E-bikes are marked with a green stripe and cost an additional $0.10 per minute. They assist you up to 20 mph.
+
+## Safety and Problems
+
+**What if a bike is damaged?**
+Check the brakes, tires, and seat before riding. If something seems wrong, press the red "Report" button on the bike's screen or use the app. Then return it to a dock to take it out of service. You won't be charged for rides under one minute.
+
+**What if the bike is lost or stolen?**
+Lock the bike with the built-in cable lock whenever you pause. Use the "Hold" feature in the app for short stops. If a bike is lost or stolen while in your care, report it within 24 hours. Unreported losses may result in a $250 fee.
+
+**Can I ride at night?**
+Yes. Our bikes have built-in front and rear lights that activate automatically.
+
+## Account Help
+
+**Can I share my membership?**
+No. Memberships are personal, and each account can only unlock one bike at a time. Group rides require multiple accounts.
+
+**How do I cancel my membership?**
+Go to Settings > Membership in the app and select "Cancel." Monthly plans end at the close of the billing period, and annual plans can be refunded within 14 days.
+
+**Who do I contact for help?**
+Call 555-0142, email help@citybikeshare.example, or use the in-app chat. Support is available daily from 6 a.m. to 10 p.m.
