@@ -10,7 +10,7 @@ All of them are started by hand from the Actions tab.
 
 | Workflow | What it does | Costs money? |
 |---|---|---|
-| Prepare inputs | Builds the public text once and caches it. With "generate" on, the models answer the 60 public prompts, and the replies are saved to `data/generated/`. | Only with "generate" on |
+| Prepare inputs | Builds the public text and caches it. Each run also fills gaps left by flaky sites (`bench/fill_corpus.py`), so running it again can only add text. With "generate" on, the models answer the 60 public prompts, and the replies are saved to `data/generated/`. | Only with "generate" on |
 | Rewrite | One arm (skill, control, or rival) rewrites the fixed sample with each model. The dry run is on by default and only prints the cost. A real run stops before any document that could pass `max_spend`. | Yes, unless dry run |
 | Detect | Desklib, Fast-DetectGPT, and Binoculars each score everything on their own runner, then the report is written to the run summary and `data/reports/`. | No (Actions minutes only) |
 | Test | Runs the unit tests on every push. | No |

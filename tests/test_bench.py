@@ -27,6 +27,7 @@ def load_module(name: str):
 bench = load_module("rewrite_bench")
 detect = load_module("detect_bench")
 pool = load_module("pool")
+fill = load_module("fill_corpus")
 corpus = bench.corpus
 
 AI_TEXT = (
@@ -330,3 +331,69 @@ def test_pool_restore_refuses_a_changed_text(monkeypatch, tmp_path) -> None:
     (pool_dir / "gen-0123456789ab.txt").write_text("edited")
     with pytest.raises(ValueError, match="does not match"):
         pool.restore(pool_dir)
+
+
+# ------------------------------------------------------------------- fill
+
+
+def _manifest(monkeypatch, tmp_path, entries) -> None:
+    for module in {corpus, detect.corpus, fill.corpus}:
+        monkeypatch.setattr(module, "MANIFEST_PATH", tmp_path / "manifest.json")
+        monkeypatch.setattr(module, "CACHE_DIR", tmp_path / "cache")
+    (tmp_path / "manifest.json").write_text(json.dumps({"entries": entries}), encoding="utf-8")
+
+
+def test_gutenberg_fill_tries_mirrors_and_keeps_only_listed_chunks(monkeypatch, tmp_path) -> None:
+    para = " ".join(["word"] * 40)
+    body = "\n\n".join(f"{para} {i}" for i in range(200))
+    raw = f"header\n*** START OF THE BOOK ***\n{body}\n*** END OF THE BOOK ***\nfooter"
+    chunks = corpus.gutenberg_chunks(raw)
+    assert len(chunks) >= 2
+    listed = [{"id": f"guten-{i:012x}", "kind": "gutenberg-work", "sha256": corpus.sha256_text(c),
+               "source": {"gutenberg_id": 205}} for i, c in enumerate(chunks[:2])]
+    _manifest(monkeypatch, tmp_path, listed)
+    calls = []
+
+    def fetch(url, _sleep):
+        calls.append(url)
+        if len(calls) == 1:
+            raise corpus.urllib.error.URLError("503")
+        return raw
+
+    assert fill.fill_gutenberg(0, fetch) == (2, 2)
+    assert len(calls) == 2 and "pglaf" in calls[1]
+    assert bench.read_text(listed[0]["id"]) == chunks[0]
+    assert len(list((tmp_path / "cache").glob("*.txt"))) == 2
+
+
+def test_gutenberg_mirror_paths() -> None:
+    assert fill.gutenberg_dir(205) == "2/0"
+    assert fill.gutenberg_dir(2944) == "2/9/4"
+
+
+def test_stackexchange_fill_asks_for_full_pages(monkeypatch, tmp_path) -> None:
+    listed = [{"id": f"se-{i:012x}", "kind": "stackexchange-answer", "sha256": "x",
+               "extraction": corpus.HTML_STRIP_VERSION, "source": {"site": "cooking", "answer_id": i}}
+              for i in range(60)]
+    _manifest(monkeypatch, tmp_path, listed)
+    seen = []
+
+    def get(path, params, _sleep):
+        seen.append(params)
+        ids = path.split("/")[1].split(";")
+        return {"items": [{"answer_id": int(i), "body": f"<p>answer {i}</p>"} for i in ids][: params.get("pagesize", 30)]}
+
+    assert fill.fill_stackexchange(0, get) == (60, 60)
+    assert seen == [{"site": "cooking", "pagesize": 100}]
+    assert bench.read_text("se-00000000003b") == "answer 59"
+
+
+def test_human_cut_off_set_skips_edited_sources(monkeypatch, tmp_path) -> None:
+    entries = [
+        {"id": "cc-000000000001", "kind": "cc-news", "label": "human", "split": "test", "sha256": corpus.sha256_text("same")},
+        {"id": "cc-000000000002", "kind": "cc-news", "label": "human", "split": "test", "sha256": corpus.sha256_text("old")},
+    ]
+    _manifest(monkeypatch, tmp_path, entries)
+    corpus.write_cache("cc-000000000001", "same")
+    corpus.write_cache("cc-000000000002", "edited")
+    assert detect.human_test_texts() == [("cc-000000000001", "same")]

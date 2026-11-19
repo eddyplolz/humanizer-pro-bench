@@ -305,8 +305,12 @@ def human_test_texts() -> list[tuple[str, str]]:
         if (entry.get("split") or corpus.digest_split(entry["sha256"])) != "test":
             continue
         path = corpus.cache_path(entry["id"])
-        if path.exists():
-            out.append((entry["id"], path.read_bytes().decode("utf-8")))
+        if not path.exists():
+            continue
+        text = path.read_bytes().decode("utf-8")
+        # A source edited since the manifest was built is not the listed text.
+        if corpus.sha256_text(text) == entry["sha256"]:
+            out.append((entry["id"], text))
     return out
 
 

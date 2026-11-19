@@ -40,11 +40,11 @@ jobs:
       # detectors' 1% cut-offs, so a missing one shrinks that set; RAID is
       # in the sample, so its step must pass.
       - name: Fetch Wikipedia, Stack Exchange, CC-News, and Strunk text
-        if: steps.setup.outputs.cache-hit != 'true'
+        if: steps.setup.outputs.restored != 'true'
         continue-on-error: true
         run: cd upstream && python scripts/corpus.py fetch
       - name: Build the Gutenberg essays
-        if: steps.setup.outputs.cache-hit != 'true'
+        if: steps.setup.outputs.restored != 'true'
         continue-on-error: true
         run: |
           cd upstream
@@ -55,14 +55,14 @@ jobs:
           done
           exit 1
       - name: Build the PEPs
-        if: steps.setup.outputs.cache-hit != 'true'
+        if: steps.setup.outputs.restored != 'true'
         continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: cd upstream && python scripts/corpus.py build-peps
       - name: Build RAID
         id: raid
-        if: steps.setup.outputs.cache-hit != 'true'
+        if: steps.setup.outputs.restored != 'true'
         run: |
           cd upstream
           for attempt in 1 2; do
@@ -70,8 +70,14 @@ jobs:
             sleep 120
           done
           exit 1
+      # Runs every time, so a restored cache gets its gaps filled too:
+      # Gutenberg from mirrors (it answers 503 to GitHub's runners) and the
+      # Stack Exchange answers that corpus.py fetch drops past 30 per site.
+      - name: Fill the gaps
+        if: always()
+        run: python bench/fill_corpus.py
       - name: Count what was built
-        if: always() && steps.setup.outputs.cache-hit != 'true'
+        if: always()
         run: |
           cd upstream
           python scripts/corpus.py verify || true
@@ -83,15 +89,16 @@ jobs:
           for kind in sorted(want):
               print(f"{kind}: {have[kind]} of {want[kind]} cached")
           PY
-      # Saved only once RAID is in, since a saved cache is never rebuilt.
+      # Saved under this run's own key once RAID is in. Later jobs restore
+      # the newest save for the pinned commit.
       - name: Save the corpus cache
-        if: always() && steps.setup.outputs.cache-hit != 'true' && steps.raid.outcome == 'success'
+        if: always() && (steps.raid.outcome == 'success' || steps.setup.outputs.restored == 'true')
         uses: actions/cache/save@v4
         with:
           path: |
             upstream/corpus/cache
             upstream/corpus/manifest.json
-          key: corpus-${{ steps.setup.outputs.sha }}-v1
+          key: corpus-${{ steps.setup.outputs.sha }}-v1-${{ github.run_id }}
       - name: Generate the fresh AI pool
         if: inputs.generate
         env:
