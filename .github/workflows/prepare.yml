@@ -117,6 +117,15 @@ jobs:
           python scripts/generate_machine.py --provider openrouter --models $MODELS
           cd ..
           python bench/pool.py save
+      # Kept as a run artifact too, so paid text survives even if the commit fails.
+      - name: Keep the fresh pool as an artifact
+        if: always() && inputs.generate && !inputs.dry_run
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated-pool
+          path: data/generated/
+          if-no-files-found: ignore
+          retention-days: 30
       - name: Commit the fresh pool
         if: inputs.generate && !inputs.dry_run
         run: |
