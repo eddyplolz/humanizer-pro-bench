@@ -28,6 +28,7 @@ bench = load_module("rewrite_bench")
 detect = load_module("detect_bench")
 pool = load_module("pool")
 fill = load_module("fill_corpus")
+check_models = load_module("check_models")
 corpus = bench.corpus
 
 AI_TEXT = (
@@ -397,3 +398,8 @@ def test_human_cut_off_set_skips_edited_sources(monkeypatch, tmp_path) -> None:
     corpus.write_cache("cc-000000000001", "same")
     corpus.write_cache("cc-000000000002", "edited")
     assert detect.human_test_texts() == [("cc-000000000001", "same")]
+
+
+def test_model_check_names_unlisted_ids() -> None:
+    listed = {"anthropic/claude-sonnet-5.5", "openai/gpt-5.4"}
+    assert check_models.missing(["anthropic/claude-sonnet-5.5", "openai/gpt-9"], listed) == ["openai/gpt-9"]

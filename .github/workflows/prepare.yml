@@ -107,6 +107,7 @@ jobs:
           MAX_SPEND: ${{ inputs.max_spend }}
           DRY_RUN: ${{ inputs.dry_run }}
         run: |
+          python bench/check_models.py $MODELS
           cd upstream
           out=$(python scripts/generate_machine.py --provider openrouter --models $MODELS --dry-run)
           echo "$out"
