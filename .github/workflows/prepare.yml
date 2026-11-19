@@ -34,20 +34,58 @@ jobs:
         uses: ./.github/actions/setup
         with:
           require-cache: "false"
-      - name: Build public text (human pools and RAID)
+      # Each source is its own step, so one flaky public site (Gutenberg
+      # answered 503 on the first run) costs only that source, and the
+      # cache below still saves everything else. Human pools set the
+      # detectors' 1% cut-offs, so a missing one shrinks that set; RAID is
+      # in the sample, so its step must pass.
+      - name: Fetch Wikipedia, Stack Exchange, CC-News, and Strunk text
         if: steps.setup.outputs.cache-hit != 'true'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
+        run: cd upstream && python scripts/corpus.py fetch
+      - name: Build the Gutenberg essays
+        if: steps.setup.outputs.cache-hit != 'true'
+        continue-on-error: true
         run: |
           cd upstream
-          # PERSUADE is a private dataset and is never built here.
-          python scripts/corpus.py fetch || true
-          python scripts/corpus.py build-essays
-          python scripts/corpus.py build-peps
-          python scripts/corpus.py build-raid
-          python scripts/corpus.py verify || true
-      - name: Save the corpus cache
+          for attempt in 1 2 3; do
+            python scripts/corpus.py build-essays --sleep 3 && exit 0
+            echo "attempt $attempt failed; waiting before a retry"
+            sleep $((attempt * 120))
+          done
+          exit 1
+      - name: Build the PEPs
         if: steps.setup.outputs.cache-hit != 'true'
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: cd upstream && python scripts/corpus.py build-peps
+      - name: Build RAID
+        id: raid
+        if: steps.setup.outputs.cache-hit != 'true'
+        run: |
+          cd upstream
+          for attempt in 1 2; do
+            python scripts/corpus.py build-raid && exit 0
+            sleep 120
+          done
+          exit 1
+      - name: Count what was built
+        if: always() && steps.setup.outputs.cache-hit != 'true'
+        run: |
+          cd upstream
+          python scripts/corpus.py verify || true
+          python - <<'PY'
+          import collections, json, pathlib
+          entries = json.loads(pathlib.Path("corpus/manifest.json").read_text())["entries"]
+          have = collections.Counter(e["kind"] for e in entries if pathlib.Path(f"corpus/cache/{e['id']}.txt").exists())
+          want = collections.Counter(e["kind"] for e in entries)
+          for kind in sorted(want):
+              print(f"{kind}: {have[kind]} of {want[kind]} cached")
+          PY
+      # Saved only once RAID is in, since a saved cache is never rebuilt.
+      - name: Save the corpus cache
+        if: always() && steps.setup.outputs.cache-hit != 'true' && steps.raid.outcome == 'success'
         uses: actions/cache/save@v4
         with:
           path: |
