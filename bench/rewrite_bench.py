@@ -104,6 +104,15 @@ DEFAULT_MODELS = ("anthropic/claude-sonnet-5.5",)
 DEFAULT_PASSES = 3
 MAX_TOKENS = 16000
 CHARS_PER_TOKEN = gm.CHARS_PER_TOKEN
+# Claude's tokenizer packs fewer characters per token than OpenAI's. The
+# first paid skill run measured about 2.5 characters per token for Sonnet
+# (28,900 prompt tokens for a 71,400-character request) against about 3.9
+# for GPT-5.4, so a flat 4 put Sonnet's real cost above its "ceiling".
+ANTHROPIC_CHARS_PER_TOKEN = 2.4
+
+
+def chars_per_token(model: str) -> float:
+    return ANTHROPIC_CHARS_PER_TOKEN if model.startswith("anthropic/") else CHARS_PER_TOKEN
 
 # A first line that introduces the text instead of being part of it.
 LEAD_IN_RE = re.compile(r"^(?:here(?:'s| is| are)|sure|certainly|of course|below is)\b[^\n]{0,120}:\s*$", re.IGNORECASE)
@@ -306,16 +315,18 @@ def draft_cost(sys_tokens: float, doc: float, reply: float, drafts: int, prices:
     return cost
 
 
-def estimate(items: list[dict], system: str | None, arm: str, passes: int, prices: tuple[float, float]) -> tuple[float, float]:
+def estimate(
+    items: list[dict], system: str | None, arm: str, passes: int, prices: tuple[float, float], cpt: float = CHARS_PER_TOKEN
+) -> tuple[float, float]:
     """(estimate, ceiling) in USD. The estimate assumes two drafts for the
     skill arm and replies as long as the document; the ceiling assumes every
     allowed draft and replies 1.5 times the document."""
-    sys_tokens = len(system or "") / CHARS_PER_TOKEN
+    sys_tokens = len(system or "") / cpt
     typical = min(2, passes) if arm == "skill" else 1
     most = passes if arm == "skill" else 1
     est = ceil = 0.0
     for item in items:
-        doc = len(item["text"]) / CHARS_PER_TOKEN
+        doc = len(item["text"]) / cpt
         est += draft_cost(sys_tokens, doc, doc, typical, prices)
         ceil += draft_cost(sys_tokens, doc, 1.5 * doc, most, prices)
     return est, ceil
@@ -333,12 +344,14 @@ def spent_usd(usage: list[dict], prices: tuple[float, float]) -> float:
     return total
 
 
-def worst_case_usd(item: dict, system: str | None, arm: str, passes: int, max_tokens: int, prices: tuple[float, float]) -> float:
+def worst_case_usd(
+    item: dict, system: str | None, arm: str, passes: int, max_tokens: int, prices: tuple[float, float], cpt: float = CHARS_PER_TOKEN
+) -> float:
     """The most one document can cost: every draft allowed, every reply at
     max_tokens. Checked before each document, so a run never passes its cap."""
     drafts = passes if arm == "skill" else 1
-    sys_tokens = len(system or "") / CHARS_PER_TOKEN
-    doc = len(item["text"]) / CHARS_PER_TOKEN
+    sys_tokens = len(system or "") / cpt
+    doc = len(item["text"]) / cpt
     return draft_cost(sys_tokens, doc, max_tokens, drafts, prices)
 
 
@@ -381,7 +394,7 @@ def main(argv: list[str] | None = None) -> int:
             print(f"FAIL: OpenRouter lists no fixed price for model {model!r}", file=sys.stderr)
             return 2
         todo = [item for item in items if item["id"] not in load_done(output_path(args.arm, model, args.split, args.tag))]
-        est, ceil = estimate(todo, system, args.arm, args.passes, prices[model])
+        est, ceil = estimate(todo, system, args.arm, args.passes, prices[model], chars_per_token(model))
         total_est += est
         total_ceil += ceil
         print(f"  {model}: {len(todo)} to do; estimated ${est:.2f}, ceiling ${ceil:.2f}")
@@ -403,7 +416,7 @@ def main(argv: list[str] | None = None) -> int:
         for item in items:
             if item["id"] in done:
                 continue
-            worst = worst_case_usd(item, system, args.arm, args.passes, args.max_tokens, prices[model])
+            worst = worst_case_usd(item, system, args.arm, args.passes, args.max_tokens, prices[model], chars_per_token(model))
             if spent + worst > args.max_spend:
                 print(
                     f"STOP: spent ${spent:.2f}; the next document could cost up to ${worst:.2f}, "

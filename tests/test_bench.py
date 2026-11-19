@@ -403,3 +403,10 @@ def test_human_cut_off_set_skips_edited_sources(monkeypatch, tmp_path) -> None:
 def test_model_check_names_unlisted_ids() -> None:
     listed = {"anthropic/claude-sonnet-5.5", "openai/gpt-5.4"}
     assert check_models.missing(["anthropic/claude-sonnet-5.5", "openai/gpt-9"], listed) == ["openai/gpt-9"]
+
+
+def test_claude_estimate_uses_denser_tokens() -> None:
+    items = [{"text": "y" * 4_000}]
+    gpt, _ = bench.estimate(items, "x" * 70_000, "skill", 3, (3e-6, 15e-6), bench.chars_per_token("openai/gpt-5.4"))
+    claude, _ = bench.estimate(items, "x" * 70_000, "skill", 3, (3e-6, 15e-6), bench.chars_per_token("anthropic/claude-sonnet-5.5"))
+    assert claude > 1.5 * gpt
