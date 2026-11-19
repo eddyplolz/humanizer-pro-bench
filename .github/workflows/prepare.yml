@@ -22,7 +22,7 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: bench-data
+  group: bench-prepare
   cancel-in-progress: false
 jobs:
   prepare:
@@ -124,4 +124,8 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/generated
           git commit -m "Add the generated pool" || echo "nothing to commit"
-          git push
+          for attempt in 1 2 3 4; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep $((attempt * 10))
+          done
+          exit 1

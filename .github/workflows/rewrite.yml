@@ -34,7 +34,7 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: bench-data
+  group: bench-rewrite-${{ inputs.arm }}
   cancel-in-progress: false
 jobs:
   rewrite:
@@ -78,4 +78,8 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/rewrites
           git commit -m "Add rewrites: ${{ inputs.arm }} on ${{ inputs.split }}" || echo "nothing to commit"
-          git push
+          for attempt in 1 2 3 4; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep $((attempt * 10))
+          done
+          exit 1
