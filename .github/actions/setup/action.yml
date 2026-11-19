@@ -29,7 +29,10 @@ runs:
     # The corpus text and the manifest it was built with live only in this
     # private repo's Actions cache, never in a commit. A cache can't be
     # overwritten, so each Prepare run saves under its own key and this
-    # restores the newest one for the pinned commit.
+    # restores the newest one for the pinned commit. The trailing dash
+    # matters: restore-keys tries an exact match first, and the first full
+    # Prepare run saved a gappy cache under the bare `-v1` key, so without
+    # the dash every job restored that old cache instead of the newest.
     - id: corpus
       uses: actions/cache/restore@v4
       with:
@@ -37,7 +40,7 @@ runs:
           upstream/corpus/cache
           upstream/corpus/manifest.json
         key: corpus-${{ steps.ref.outputs.sha }}-v1-${{ github.run_id }}
-        restore-keys: corpus-${{ steps.ref.outputs.sha }}-v1
+        restore-keys: corpus-${{ steps.ref.outputs.sha }}-v1-
     - if: inputs.require-cache == 'true' && steps.corpus.outputs.cache-matched-key == ''
       shell: bash
       run: |
