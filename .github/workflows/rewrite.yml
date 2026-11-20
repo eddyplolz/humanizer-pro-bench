@@ -28,6 +28,9 @@ on:
       tag:
         description: Optional label for a repeat run (lowercase letters and digits)
         default: ""
+      skill_file:
+        description: Draft SKILL.md in this repo to test instead of the pinned one (skill arm; needs a tag)
+        default: ""
       rival_ref:
         description: Commit or branch of blader/humanizer (rival arm only)
         default: main
@@ -61,10 +64,15 @@ jobs:
           MAX_SPEND: ${{ inputs.max_spend }}
           DRY_RUN: ${{ inputs.dry_run }}
           TAG: ${{ inputs.tag }}
+          SKILL_FILE: ${{ inputs.skill_file }}
         run: |
           python bench/check_models.py $MODELS
           args=(--arm "$ARM" --split "$SPLIT" --max-spend "$MAX_SPEND" --models $MODELS)
           if [ -n "$TAG" ]; then args+=(--tag "$TAG"); fi
+          if [ -n "$SKILL_FILE" ]; then
+            echo "draft skill: $SKILL_FILE, sha256 $(sha256sum "$SKILL_FILE" | cut -c1-12)"
+            args+=(--skill-file "$SKILL_FILE")
+          fi
           if [ "$ARM" = "rival" ]; then
             echo "rival commit: $(git -C rival rev-parse HEAD)"
             args+=(--rival-skill rival/SKILL.md)

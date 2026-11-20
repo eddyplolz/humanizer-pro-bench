@@ -426,17 +426,19 @@ def report_command(args: argparse.Namespace) -> int:
     for row in rewrite_rows():
         if row["split"] != args.split or row["id"] not in originals:
             continue
+        arm = f"{row['arm']} {row['tag']}" if row.get("tag") else row["arm"]
         if row.get("final"):
             s = scores.get(bench.sha256_text(row["final"]))
             if s:
-                table[(f"{row['arm']} {row['requested_model']}", groups[row["id"]])].append((s, guardrails(originals[row["id"]], row["final"])))
+                table[(f"{arm} {row['requested_model']}", groups[row["id"]])].append((s, guardrails(originals[row["id"]], row["final"])))
             if row["arm"] == "skill" and row["drafts"]:
                 s1 = scores.get(bench.sha256_text(row["drafts"][0]))
                 if s1:
-                    table[(f"skill, first draft only {row['requested_model']}", groups[row["id"]])].append(
+                    table[(f"{arm}, first draft only {row['requested_model']}", groups[row["id"]])].append(
                         (s1, guardrails(originals[row["id"]], row["drafts"][0]))
                     )
-    header = ["Arm and model", "Group", "n"] + [f"{d} detected" for d in detectors] + [f"{d} AUROC" for d in detectors]
+    header = ["Arm and model", "Group", "n"] + [f"{d} detected" for d in detectors] + ["any detector"]
+    header += [f"{d} AUROC" for d in detectors]
     header += ["fact drift", "fact drift, quote style ignored", "meaning warn", "hidden chars", "median length"]
     print("| " + " | ".join(header) + " |")
     print("|" + "---|" * len(header))
@@ -444,6 +446,9 @@ def report_command(args: argparse.Namespace) -> int:
         cells = [label, group, str(len(rows))]
         for d in detectors:
             cells.append(pct(*rate([r[0][d] for r in rows if d in r[0]], cuts[d])))
+        # Caught by at least one detector, over rows every detector scored.
+        full = [r[0] for r in rows if all(d in r[0] for d in detectors)]
+        cells.append(pct(sum(any(s[d] > cuts[d] for d in detectors) for s in full), len(full)))
         for d in detectors:
             value = fp.value_auroc([h[d] for h in humans if d in h], [r[0][d] for r in rows if d in r[0]])
             cells.append("-" if value is None else f"{value:.2f}")

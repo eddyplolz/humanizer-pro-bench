@@ -167,8 +167,11 @@ def read_text(entry_id: str) -> str:
 # ------------------------------------------------------------------- prompts
 
 
-def skill_system(root: Path = ROOT) -> str:
-    parts = [(root / "SKILL.md").read_text(encoding="utf-8")]
+def skill_system(root: Path = ROOT, skill_file: Path | None = None) -> str:
+    """SKILL.md and its references from the pinned checkout. skill_file swaps
+    in a draft SKILL.md (kept in this repo) so a change can be measured before
+    it goes public; the references and the audit CLI stay pinned."""
+    parts = [(skill_file or root / "SKILL.md").read_text(encoding="utf-8")]
     for rel in SKILL_REFERENCES:
         parts.append(f"<file path=\"{rel}\">\n{(root / rel).read_text(encoding='utf-8')}\n</file>")
     parts.append(HARNESS_NOTE)
@@ -362,6 +365,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--split", choices=["test", "dev"], default="test")
     parser.add_argument("--passes", type=int, default=DEFAULT_PASSES, help="Most drafts per document (skill arm).")
     parser.add_argument("--rival-skill", type=Path, help="Path to the rival's SKILL.md (rival arm).")
+    parser.add_argument("--skill-file", type=Path, help="Draft SKILL.md to test in place of the pinned one (skill arm).")
     parser.add_argument("--tag", default="", help="Label for a repeat run (noise check), kept in the file name.")
     parser.add_argument("--limit", type=int, help="Rewrite only the first N sampled documents.")
     parser.add_argument("--max-tokens", type=int, default=MAX_TOKENS)
@@ -372,6 +376,8 @@ def main(argv: list[str] | None = None) -> int:
         parser.error("--arm rival needs --rival-skill PATH")
     if args.tag and not re.fullmatch(r"[a-z0-9]+", args.tag):
         parser.error("--tag takes lowercase letters and digits only")
+    if args.skill_file and (args.arm != "skill" or not args.tag):
+        parser.error("--skill-file is for the skill arm and needs a --tag, so its rows stay apart from the baseline")
 
     sample = bench_sample(corpus.load_manifest()["entries"], args.split)[: args.limit]
     try:
@@ -379,7 +385,7 @@ def main(argv: list[str] | None = None) -> int:
     except FileNotFoundError as error:
         print(f"FAIL: {error.args[0]} is not in the cache; run corpus.py fetch first", file=sys.stderr)
         return 3
-    system = skill_system() if args.arm == "skill" else rival_system(args.rival_skill) if args.arm == "rival" else None
+    system = skill_system(skill_file=args.skill_file) if args.arm == "skill" else rival_system(args.rival_skill) if args.arm == "rival" else None
     print(f"{len(items)} documents x {len(args.models)} model(s), arm {args.arm}, split {args.split}")
     if system:
         print(f"instructions: {len(system)} characters, sha256 {sha256_text(system)[:12]}")
@@ -434,7 +440,7 @@ def main(argv: list[str] | None = None) -> int:
             spent += spent_usd(record["usage"], prices[model])
             row = {
                 "id": item["id"], "group": item["group"], "register": item["register"], "split": item["split"],
-                "source_model": item["model"], "arm": args.arm, "requested_model": model,
+                "source_model": item["model"], "arm": args.arm, "requested_model": model, "tag": args.tag,
                 "instructions_sha256": sha256_text(system) if system else None,
                 "time": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), **record,
             }

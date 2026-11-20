@@ -86,6 +86,25 @@ def test_skill_system_carries_skill_and_references() -> None:
     assert system.endswith(bench.HARNESS_NOTE)
 
 
+def test_skill_file_swaps_only_skill_md(tmp_path) -> None:
+    draft = tmp_path / "SKILL.md"
+    draft.write_text("# Draft skill\n", encoding="utf-8")
+    system = bench.skill_system(skill_file=draft)
+    assert system.startswith("# Draft skill")
+    assert "# Humanizer Pro: Remove AI Writing Tells" not in system
+    for rel in bench.SKILL_REFERENCES:
+        assert f'<file path="{rel}">' in system
+
+
+def test_skill_file_needs_skill_arm_and_tag(tmp_path) -> None:
+    draft = tmp_path / "SKILL.md"
+    draft.write_text("x", encoding="utf-8")
+    with pytest.raises(SystemExit):
+        bench.main(["--arm", "skill", "--skill-file", str(draft), "--max-spend", "1", "--dry-run"])
+    with pytest.raises(SystemExit):
+        bench.main(["--arm", "control", "--tag", "t1", "--skill-file", str(draft), "--max-spend", "1", "--dry-run"])
+
+
 @pytest.mark.parametrize(
     "reply, expected, stripped",
     [
@@ -222,8 +241,28 @@ def test_report_prints_rates_guardrails_and_first_draft_rows(monkeypatch, capsys
     assert "| original (no rewrite) | fresh | 1 | 100% (" in out
     assert "| skill model-a | fresh | 1 |" in out
     assert "| skill, first draft only model-a | fresh | 1 |" in out
+    assert "| any detector |" in out.splitlines()[1]
     skill_row = next(line for line in out.splitlines() if line.startswith("| skill model-a"))
     assert "100% (" in skill_row.split("|")[-5]  # fact drift: the number 12% was lost
+
+
+def test_report_keeps_tagged_runs_apart(monkeypatch, capsys) -> None:
+    humans = [(f"h{i}", f"Human text number {i} about gardens.") for i in range(100)]
+    sample = [{"id": "m1", "group": "fresh", "register": "essay", "split": "test", "model": "x"}]
+    base = {"id": "m1", "split": "test", "arm": "skill", "requested_model": "model-a", "file": "f"}
+    rows = [{**base, "drafts": [AI_TEXT], "final": AI_TEXT}, {**base, "tag": "fix1", "drafts": ["New text."], "final": "New text."}]
+    texts = [t for _i, t in humans] + [AI_TEXT, "New text.", "Original."]
+    scores = {bench.sha256_text(t): {"desklib": float(i) / 1000} for i, t in enumerate(texts)}
+    monkeypatch.setattr(detect, "human_test_texts", lambda: humans)
+    monkeypatch.setattr(detect, "rewrite_rows", lambda: rows)
+    monkeypatch.setattr(detect, "load_scores", lambda name: scores if name == "desklib" else {})
+    monkeypatch.setattr(bench, "bench_sample", lambda entries, split: sample)
+    monkeypatch.setattr(bench, "read_text", lambda entry_id: "Original.")
+    assert detect.report_command(SimpleNamespace(pair="tiny", fpr=0.01, split="test")) == 0
+    out = capsys.readouterr().out
+    assert "| skill model-a | fresh | 1 |" in out
+    assert "| skill fix1 model-a | fresh | 1 |" in out
+    assert "| skill fix1, first draft only model-a | fresh | 1 |" in out
 
 
 def test_pair_scores_chunking_matches_one_pass(monkeypatch) -> None:
