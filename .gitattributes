@@ -1,0 +1,2 @@
+# Detect runs append to these sorted files at the same time; keep both sides.
+data/scores/*.jsonl merge=union
