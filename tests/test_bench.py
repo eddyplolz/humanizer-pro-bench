@@ -449,3 +449,132 @@ def test_claude_estimate_uses_denser_tokens() -> None:
     gpt, _ = bench.estimate(items, "x" * 70_000, "skill", 3, (3e-6, 15e-6), bench.chars_per_token("openai/gpt-5.4"))
     claude, _ = bench.estimate(items, "x" * 70_000, "skill", 3, (3e-6, 15e-6), bench.chars_per_token("anthropic/claude-sonnet-5.5"))
     assert claude > 1.5 * gpt
+
+
+# ------------------------------------------------------- subscription CLIs
+
+cli = bench.cli
+
+
+class FakeRun:
+    """Stands in for subprocess.run: records each command and answers in turn."""
+
+    def __init__(self, outputs, returncode=0, stderr=""):
+        self.outputs, self.calls, self.returncode, self.stderr = list(outputs), [], returncode, stderr
+
+    def __call__(self, cmd, **kwargs):
+        self.calls.append((cmd, kwargs["input"]))
+        return SimpleNamespace(returncode=self.returncode, stdout=self.outputs.pop(0), stderr=self.stderr)
+
+
+def claude_json(text, session="s-1"):
+    return json.dumps({
+        "result": text, "is_error": False, "session_id": session, "total_cost_usd": 0.05,
+        "usage": {"input_tokens": 10, "cache_read_input_tokens": 900, "cache_creation_input_tokens": 0, "output_tokens": 40},
+        "modelUsage": {"claude-sonnet-5-5": {}},
+    })
+
+
+def no_paid_keys(monkeypatch):
+    for key in cli.PAID_KEYS:
+        monkeypatch.delenv(key, raising=False)
+
+
+def test_cli_refuses_to_run_with_a_paid_key_set(monkeypatch, tmp_path) -> None:
+    no_paid_keys(monkeypatch)
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "x")
+    with pytest.raises(cli.CLIError, match="ANTHROPIC_API_KEY"):
+        cli.ClaudeCLIClient(run=FakeRun([]), workdir=tmp_path)
+
+
+def test_claude_cli_loop_resumes_one_session(monkeypatch, tmp_path) -> None:
+    no_paid_keys(monkeypatch)
+    fake = FakeRun([claude_json(AI_TEXT), claude_json(CLEAN_TEXT)])
+    client = cli.ClaudeCLIClient(run=fake, workdir=tmp_path)
+    record = bench.rewrite_one(client, "anthropic/claude-sonnet-5.5", "skill", "SYSTEM", AI_TEXT, 3, 1000)
+    assert record["drafts"] == [AI_TEXT, CLEAN_TEXT]
+    first, second = fake.calls
+    assert "--resume" not in first[0] and first[1].startswith(bench.SKILL_REQUEST)
+    assert second[0][second[0].index("--resume") + 1] == "s-1"
+    assert second[1].startswith(bench.FEEDBACK_HEAD)
+    assert first[0][first[0].index("--tools") + 1] == ""
+    assert (tmp_path / "system.md").read_text() == "SYSTEM"
+    assert record["served_model"] == "claude-sonnet-5-5"
+    assert record["usage"][0]["prompt_tokens"] == 910 and record["usage"][0]["cached_tokens"] == 900
+
+
+def test_claude_cli_usage_limit_stops(monkeypatch, tmp_path) -> None:
+    no_paid_keys(monkeypatch)
+    out = json.dumps({"result": "Claude usage limit reached. Your limit resets at 5pm.", "is_error": True})
+    client = cli.ClaudeCLIClient(run=FakeRun([out]), workdir=tmp_path)
+    with pytest.raises(cli.UsageLimitError):
+        client.chat("anthropic/claude-sonnet-5.5", 1000, [{"role": "user", "content": "hi"}])
+
+
+def test_codex_cli_reads_events_and_resumes(monkeypatch, tmp_path) -> None:
+    no_paid_keys(monkeypatch)
+
+    def events(text):
+        return "\n".join(json.dumps(e) for e in [
+            {"type": "thread.started", "thread_id": "t-9"},
+            {"type": "item.completed", "item": {"type": "agent_message", "text": text}},
+            {"type": "turn.completed", "usage": {"input_tokens": 500, "cached_input_tokens": 400, "output_tokens": 30}},
+        ])
+
+    fake = FakeRun([events(AI_TEXT), events(CLEAN_TEXT)])
+    client = cli.CodexCLIClient(run=fake, workdir=tmp_path)
+    record = bench.rewrite_one(client, "openai/gpt-5.4", "skill", "SYSTEM", AI_TEXT, 3, 1000)
+    assert record["final"] == CLEAN_TEXT
+    first, second = fake.calls
+    assert first[0][:2] == ["codex", "exec"] and "resume" not in first[0]
+    assert second[0][2:4] == ["resume", "t-9"]
+    assert first[0][first[0].index("-m") + 1] == "gpt-5.4"
+    assert record["usage"][0] == {"prompt_tokens": 500, "completion_tokens": 30, "cached_tokens": 400, "rate_limits": None}
+
+
+def test_codex_cli_limit_in_stderr_stops(monkeypatch, tmp_path) -> None:
+    no_paid_keys(monkeypatch)
+    client = cli.CodexCLIClient(run=FakeRun([""], returncode=1, stderr="You've hit your usage limit."), workdir=tmp_path)
+    with pytest.raises(cli.UsageLimitError):
+        client.chat("openai/gpt-5.4", 1000, [{"role": "user", "content": "hi"}])
+
+
+def test_control_arm_gets_a_neutral_system_prompt(monkeypatch, tmp_path) -> None:
+    no_paid_keys(monkeypatch)
+    client = cli.ClaudeCLIClient(run=FakeRun([claude_json(CLEAN_TEXT)]), workdir=tmp_path)
+    bench.rewrite_one(client, "anthropic/claude-sonnet-5.5", "control", None, AI_TEXT, 3, 1000)
+    assert (tmp_path / "system.md").read_text() == cli.NEUTRAL_SYSTEM
+
+
+def test_run_cli_writes_rows_and_stops_at_max_docs_and_limits(monkeypatch, tmp_path) -> None:
+    no_paid_keys(monkeypatch)
+    calls = {"n": 0}
+
+    class Fake:
+        def chat(self, model, max_tokens, messages):
+            calls["n"] += 1
+            if calls["n"] == 3:
+                raise cli.UsageLimitError("usage limit reached")
+            return SimpleNamespace(stop_reason="end_turn", content=[SimpleNamespace(type="text", text=CLEAN_TEXT)], model="m"), {}
+
+    monkeypatch.setattr(bench, "BENCH_DIR", tmp_path)
+    monkeypatch.setattr(cli, "installed", lambda backend: True)
+    monkeypatch.setitem(cli.CLIENTS, "claude-cli", Fake)
+    items = [{"id": f"d{i}", "group": "fresh", "register": "chat", "split": "test", "model": "x", "text": AI_TEXT} for i in range(4)]
+    args = SimpleNamespace(backend="claude-cli", arm="control", split="test", tag="t", models=["anthropic/claude-sonnet-5.5"],
+                           dry_run=False, max_docs=1, passes=3, max_tokens=1000)
+    assert bench.run_cli(args, items, None) == 0
+    path = bench.output_path("control", "anthropic/claude-sonnet-5.5", "test", "t")
+    assert bench.load_done(path) == {"d0"}
+    args.max_docs = None
+    assert bench.run_cli(args, items, None) == 0
+    rows = [json.loads(line) for line in path.read_text().splitlines()]
+    assert [row["id"] for row in rows] == ["d0", "d1"] and rows[1]["backend"] == "claude-cli"
+
+
+def test_sub_usage_summary(tmp_path) -> None:
+    sub = load_module("sub_usage")
+    row = {"id": "a", "backend": "claude-cli", "seconds": 30, "usage": [{"prompt_tokens": 100, "cached_tokens": 80, "completion_tokens": 5, "api_equivalent_usd": 0.01}]}
+    (tmp_path / "r.jsonl").write_text(json.dumps(row) + "\n" + json.dumps({"id": "b", "usage": []}) + "\n")
+    text = sub.summarize(tmp_path)
+    assert "| r.jsonl | 1 | 1 | 100 (80) | 5 | $0.01 | 30 |" in text

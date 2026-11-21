@@ -60,6 +60,11 @@ corpus = _load("corpus")
 gm = _load("generate_machine")
 audit = _load("humanizer_audit")
 
+_spec = importlib.util.spec_from_file_location("cli_backends", Path(__file__).resolve().parent / "cli_backends.py")
+cli = importlib.util.module_from_spec(_spec)
+sys.modules["cli_backends"] = cli
+_spec.loader.exec_module(cli)
+
 DATA_DIR = REPO / "data"
 BENCH_DIR = DATA_DIR / "rewrites"
 
@@ -261,7 +266,8 @@ def rewrite_one(client, model: str, arm: str, system: str | None, original: str,
     for _ in range(limit):
         response, used = client.chat(model, max_tokens, messages)
         served = response.model
-        usage.append({k: used.get(k) for k in ("prompt_tokens", "completion_tokens", "cost") if k in used})
+        keys = ("prompt_tokens", "completion_tokens", "cost", "cached_tokens", "api_equivalent_usd", "rate_limits")
+        usage.append({k: used.get(k) for k in keys if k in used})
         if response.stop_reason in ("refusal", "max_tokens"):
             outcome = "refused" if response.stop_reason == "refusal" else "truncated"
             break
@@ -358,6 +364,63 @@ def worst_case_usd(
     return draft_cost(sys_tokens, doc, max_tokens, drafts, prices)
 
 
+def run_cli(args, items: list[dict], system: str | None) -> int:
+    """Rewrite through a subscription CLI. Nothing here is billed per request,
+    so there is no price or cap; the run stops at the first usage-limit
+    message instead, keeping every finished document, and the same command
+    resumes later. --max-docs makes a small pilot."""
+    for model in args.models:
+        todo = [item for item in items if item["id"] not in load_done(output_path(args.arm, model, args.split, args.tag))]
+        print(f"  {model} via {args.backend}: {len(todo)} to do")
+    if args.dry_run:
+        return 0
+    if not cli.installed(args.backend):
+        print(f"FAIL: the {args.backend} command is not installed", file=sys.stderr)
+        return 3
+    try:
+        client = cli.CLIENTS[args.backend]()
+    except cli.CLIError as error:
+        print(f"FAIL: {error}", file=sys.stderr)
+        return 3
+    BENCH_DIR.mkdir(parents=True, exist_ok=True)
+    for model in args.models:
+        path = output_path(args.arm, model, args.split, args.tag)
+        done = load_done(path)
+        failures = new = 0
+        for item in items:
+            if item["id"] in done:
+                continue
+            if args.max_docs is not None and new >= args.max_docs:
+                print(f"{model}: stopped after {new} new documents (--max-docs)")
+                break
+            started = time.monotonic()
+            try:
+                record = rewrite_one(client, model, args.arm, system, item["text"], args.passes, args.max_tokens)
+            except cli.UsageLimitError as error:
+                print(f"STOP: plan usage limit reached ({error}). Finished documents are kept in {path}; run again later.")
+                return 0
+            except (cli.CLIError, OSError, ValueError) as error:
+                failures += 1
+                print(f"{item['id']} on {model}: {type(error).__name__}: {error}", flush=True)
+                if failures >= 3:
+                    print("FAIL: three documents failed; stopping so a setup fault doesn't use up the plan", file=sys.stderr)
+                    return 1
+                continue
+            row = {
+                "id": item["id"], "group": item["group"], "register": item["register"], "split": item["split"],
+                "source_model": item["model"], "arm": args.arm, "requested_model": model, "tag": args.tag,
+                "backend": args.backend, "instructions_sha256": sha256_text(system) if system else None,
+                "seconds": round(time.monotonic() - started, 1),
+                "time": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), **record,
+            }
+            with path.open("a", encoding="utf-8", newline="\n") as handle:
+                handle.write(json.dumps(row, ensure_ascii=False) + "\n")
+            new += 1
+            print(f"{item['id']} on {model}: {record['outcome']}, {len(record['drafts'])} draft(s), {row['seconds']}s", flush=True)
+        print(f"{model}: {len(load_done(path))} of {len(items)} documents in {path}")
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--arm", choices=["skill", "control", "rival"], required=True)
@@ -370,7 +433,12 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--limit", type=int, help="Rewrite only the first N sampled documents.")
     parser.add_argument("--max-tokens", type=int, default=MAX_TOKENS)
     parser.add_argument("--dry-run", action="store_true", help="Print the plan and cost; send nothing.")
-    parser.add_argument("--max-spend", type=float, required=True, help="USD cap for this run, all models together.")
+    parser.add_argument("--max-spend", type=float, help="USD cap for this run, all models together (openrouter only).")
+    parser.add_argument("--max-docs", type=int, help="Stop after this many new documents per model (a pilot).")
+    parser.add_argument(
+        "--backend", choices=["openrouter", *cli.CLIENTS], default="openrouter",
+        help="openrouter bills per request; claude-cli and codex-cli use a subscription's plan limits instead.",
+    )
     args = parser.parse_args(argv)
     if args.arm == "rival" and not args.rival_skill:
         parser.error("--arm rival needs --rival-skill PATH")
@@ -385,10 +453,14 @@ def main(argv: list[str] | None = None) -> int:
     except FileNotFoundError as error:
         print(f"FAIL: {error.args[0]} is not in the cache; run corpus.py fetch first", file=sys.stderr)
         return 3
+    if args.backend == "openrouter" and args.max_spend is None:
+        parser.error("--max-spend is required with --backend openrouter")
     system = skill_system(skill_file=args.skill_file) if args.arm == "skill" else rival_system(args.rival_skill) if args.arm == "rival" else None
     print(f"{len(items)} documents x {len(args.models)} model(s), arm {args.arm}, split {args.split}")
     if system:
         print(f"instructions: {len(system)} characters, sha256 {sha256_text(system)[:12]}")
+    if args.backend != "openrouter":
+        return run_cli(args, items, system)
     try:
         prices = gm.fetch_openrouter_prices()
     except Exception as error:  # noqa: BLE001 - any failure here means no estimate, so stop

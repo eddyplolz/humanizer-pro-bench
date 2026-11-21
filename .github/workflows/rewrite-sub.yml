@@ -1,0 +1,135 @@
+name: Rewrite (subscription)
+# Same rewrite as the Rewrite workflow, but through Claude Code or the Codex
+# CLI signed in with a subscription, so nothing is billed per request. Runs
+# count toward the plan's usage limits; a run stops at the first limit
+# message and keeps every finished document. Manual only. No API key is
+# passed to this workflow.
+on:
+  workflow_dispatch:
+    inputs:
+      backend:
+        description: claude-cli = Claude subscription; codex-cli = ChatGPT plan
+        type: choice
+        options: [claude-cli, codex-cli]
+        default: claude-cli
+      arm:
+        description: skill = our SKILL.md; control = plain prompt
+        type: choice
+        options: [skill, control]
+        default: skill
+      model:
+        description: Model id (the OpenRouter-style ids map to each CLI's names)
+        default: anthropic/claude-sonnet-5.5
+      split:
+        description: test for the scoreboard, dev for trying changes
+        type: choice
+        options: [test, dev]
+        default: test
+      tag:
+        description: Label for the run (lowercase letters and digits)
+        default: ""
+      skill_file:
+        description: Draft SKILL.md in this repo to test instead of the pinned one (skill arm; needs a tag)
+        default: ""
+      max_docs:
+        description: Stop after this many new documents (5 for a pilot; blank for all)
+        default: "5"
+      dry_run:
+        description: Only list what would run
+        type: boolean
+        default: true
+permissions:
+  contents: write
+concurrency:
+  # One run per sign-in at a time: a Codex sign-in file must not be shared
+  # by two jobs, and two Claude runs would split the same plan limit.
+  group: bench-sub-${{ inputs.backend }}
+  cancel-in-progress: false
+env:
+  CLAUDE_CODE_VERSION: 2.1.330
+  CODEX_VERSION: 0.171.0
+jobs:
+  rewrite:
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+      - run: python bench/pool.py restore
+      - name: Install the CLI
+        if: ${{ !inputs.dry_run }}
+        run: |
+          if [ "${{ inputs.backend }}" = "claude-cli" ]; then
+            npm install -g "@anthropic-ai/claude-code@$CLAUDE_CODE_VERSION"
+            claude --version
+          else
+            npm install -g "@openai/codex@$CODEX_VERSION"
+            codex --version
+          fi
+      - name: Sign in to Codex
+        if: ${{ !inputs.dry_run && inputs.backend == 'codex-cli' }}
+        env:
+          CODEX_AUTH_JSON: ${{ secrets.CODEX_AUTH_JSON }}
+        run: |
+          if [ -z "$CODEX_AUTH_JSON" ]; then echo "::error::The CODEX_AUTH_JSON secret is not set."; exit 1; fi
+          mkdir -p "$HOME/.codex"
+          printf '%s' "$CODEX_AUTH_JSON" > "$HOME/.codex/auth.json"
+          chmod 600 "$HOME/.codex/auth.json"
+          printf 'cli_auth_credentials_store = "file"\n' > "$HOME/.codex/config.toml"
+          python -c "import json,sys; d=json.load(open(sys.argv[1])); print('auth_mode:', d.get('auth_mode') or ('chatgpt' if d.get('tokens') else 'unknown'))" "$HOME/.codex/auth.json"
+          sha256sum "$HOME/.codex/auth.json" | cut -c1-12 > "$RUNNER_TEMP/codex-auth.sha"
+      - name: Rewrite
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ inputs.backend == 'claude-cli' && secrets.CLAUDE_CODE_OAUTH_TOKEN || '' }}
+          BACKEND: ${{ inputs.backend }}
+          ARM: ${{ inputs.arm }}
+          MODEL: ${{ inputs.model }}
+          SPLIT: ${{ inputs.split }}
+          TAG: ${{ inputs.tag }}
+          SKILL_FILE: ${{ inputs.skill_file }}
+          MAX_DOCS: ${{ inputs.max_docs }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          if [ "$BACKEND" = "claude-cli" ] && [ "$DRY_RUN" != "true" ] && [ -z "$CLAUDE_CODE_OAUTH_TOKEN" ]; then
+            echo "::error::The CLAUDE_CODE_OAUTH_TOKEN secret is not set."; exit 1
+          fi
+          args=(--backend "$BACKEND" --arm "$ARM" --split "$SPLIT" --models "$MODEL")
+          if [ -n "$TAG" ]; then args+=(--tag "$TAG"); fi
+          if [ -n "$MAX_DOCS" ]; then args+=(--max-docs "$MAX_DOCS"); fi
+          if [ -n "$SKILL_FILE" ]; then
+            echo "draft skill: $SKILL_FILE, sha256 $(sha256sum "$SKILL_FILE" | cut -c1-12)"
+            args+=(--skill-file "$SKILL_FILE")
+          fi
+          if [ "$DRY_RUN" = "true" ]; then args+=(--dry-run); fi
+          python bench/rewrite_bench.py "${args[@]}"
+      - name: Summarize plan use
+        if: always() && !inputs.dry_run
+        run: python bench/sub_usage.py data/rewrites >> "$GITHUB_STEP_SUMMARY" || true
+      - name: Check the Codex sign-in
+        if: always() && !inputs.dry_run && inputs.backend == 'codex-cli'
+        run: |
+          now=$(sha256sum "$HOME/.codex/auth.json" | cut -c1-12)
+          if [ "$now" != "$(cat "$RUNNER_TEMP/codex-auth.sha")" ]; then
+            echo "::warning::Codex refreshed its sign-in during this run. The saved secret may stop working; if the next run fails to sign in, save a fresh auth.json as CODEX_AUTH_JSON."
+          fi
+          rm -f "$HOME/.codex/auth.json"
+      - name: Keep the rewrites as an artifact
+        if: always() && !inputs.dry_run
+        uses: actions/upload-artifact@v4
+        with:
+          name: rewrites-sub-${{ inputs.backend }}-${{ inputs.arm }}
+          path: data/rewrites/
+          if-no-files-found: ignore
+          retention-days: 30
+      - name: Commit the rewrites
+        if: always() && !inputs.dry_run
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/rewrites
+          git commit -m "Add rewrites: ${{ inputs.arm }} on ${{ inputs.split }} via ${{ inputs.backend }}" || echo "nothing to commit"
+          for attempt in 1 2 3 4; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep $((attempt * 10))
+          done
+          exit 1

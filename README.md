@@ -13,6 +13,7 @@ All of them are started by hand from the Actions tab.
 | Prepare inputs | Builds the public text and caches it. Each run also fills gaps left by flaky sites (`bench/fill_corpus.py`), so running it again can only add text. With "generate" on, the models answer the 60 public prompts, and the replies are saved to `data/generated/`. | Only with "generate" on |
 | Rewrite | One arm (skill, control, or rival) rewrites the fixed sample with each model. The dry run is on by default and only prints the cost. A real run stops before any document that could pass `max_spend`. | Yes, unless dry run |
 | Detect | Desklib, Fast-DetectGPT, and Binoculars each score everything on their own runner, then the report is written to the run summary and `data/reports/`. | No (Actions minutes only) |
+| Rewrite (subscription) | The same rewrite through Claude Code or the Codex CLI, signed in with a Claude or ChatGPT plan. Starts as a 5-document pilot by default. Stops at the first plan-limit message and keeps finished documents. | No (uses plan limits) |
 | Test | Runs the unit tests on every push. | No |
 
 ## The numbers in a report
@@ -34,4 +35,10 @@ The skill arm has to beat the control arm (same model, plain "make it sound huma
 
 ## Secrets
 
-`OPENROUTER_API_KEY` is the only secret, and it's set under Settings, Secrets and variables, Actions. The workflows pass it only to the steps that call OpenRouter.
+Set under Settings, Secrets and variables, Actions.
+
+- `OPENROUTER_API_KEY`: paid API runs only. The workflows pass it only to the steps that call OpenRouter.
+- `CLAUDE_CODE_OAUTH_TOKEN`: from `claude setup-token` on a computer signed in to a Claude plan. Lasts a year.
+- `CODEX_AUTH_JSON`: the contents of `auth.json` after `codex login` with a ChatGPT plan, made in its own Codex folder so this copy is not shared with a computer's everyday sign-in. Codex docs allow this only for private repositories and one job at a time, which the workflow keeps to.
+
+Subscription runs differ from API runs in ways each row records (`backend`): Claude Code can't set a reply length cap, and Codex stays an agent with a read-only shell. Compare a subscription arm with a control arm run the same way.
